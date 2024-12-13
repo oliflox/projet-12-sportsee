@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+
+    --white: #fff;
+    --black: #020203;
+    --primary: #E60000;
+    --lightGray: #FBFBFB;
+
+    --radius: 8px;
+
+    --full: 100%;
+
+    --bold: 700;
+    --lightbold: 500;
+    --regular: 400;
+    --light: 300;
+
+    --nav-font-size: 24px;
+
+    --spacing-xxs: 0.25rem;
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 0.75rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.25rem;
+    --spacing-xl: 1.5rem;
+    --spacing-2xl: 2rem;
+    --spacing-3xl: 2.5rem;
+    --spacing-4xl: 3rem;
+    --spacing-5xl: 3.5rem;
+    --spacing-6xl: 3.75rem;
+    --spacing-7xl: 4rem;
+    --spacing-8xl: 5rem;
+
+    --spacing-body: 100px;
+    --spacing-collapse: 200px;
+}
