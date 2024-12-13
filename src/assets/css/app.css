@@ -71,6 +71,48 @@
     color: var(--white);
 }
 
-.dashboard{
+.dashboard {
     padding: var(--spacing-7xl);
+    width: 100%;
+}
+
+.dashboard-title {
+    font-size: var(--title-font-size);
+    font-weight: var(--bold);
+    margin-bottom: var(--spacing-3xl);
+}
+
+.username {
+    color: var(--primary);
+}
+
+.dashboard-analytics {
+    margin: var(--spacing-8xl) 0;
+    display: flex;
+    gap: var(--spacing-2xl);
+}
+
+.dashboard-analytics__card{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: var(--spacing-2xl);
+    width: 80%;
+}
+
+.dashboard-card{
+    background-color: var(--lightgray);
+    border-radius: var(--radius);
+    padding: var(--spacing-2xl);
+}
+
+.dashboard-daily__analytic{
+    grid-area: 1 / 1 / 2 / 4;
+}
+
+.dashboard-analytics__nutrition{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3xl);
 }

@@ -5,7 +5,7 @@
     --white: #fff;
     --black: #020203;
     --primary: #E60000;
-    --lightGray: #FBFBFB;
+    --lightgray: #FBFBFB;
 
     --radius: 8px;
 
@@ -17,6 +17,7 @@
     --light: 300;
 
     --nav-font-size: 24px;
+    --title-font-size: 48px;
 
     --spacing-xxs: 0.25rem;
     --spacing-xs: 0.5rem;
