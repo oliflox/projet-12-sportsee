@@ -1,12 +1,10 @@
 export default function DailyCal() {
   return (
-    <div className="dashboard-dayliCal dashboard-card">
-      <div className="dashboard-dayliCal__img">
-        <img src="./src/assets/img/energy.svg" alt="Dayli Calories logo" />
-      </div>
+    <div className="dashboard-card dashboard-dayliCal">
+      <img className="dashboard-card__logo" src="./src/assets/img/energy.svg" alt="Dayli Calories logo" />
       <div>
-        <p className="dashboard-dayliCal__value">2470kCal</p>
-        <p className="dashboard-dayliCal__title">Calories</p>
+        <p className="dashboard-card__value">2470kCal</p>
+        <p className="dashboard-card__title">Calories</p>
       </div>
     </div>
   );

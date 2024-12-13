@@ -92,7 +92,7 @@
     gap: var(--spacing-2xl);
 }
 
-.dashboard-analytics__card{
+.dashboard-analytics__card {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
@@ -100,19 +100,43 @@
     width: 80%;
 }
 
-.dashboard-card{
+.dashboard-card {
     background-color: var(--lightgray);
     border-radius: var(--radius);
     padding: var(--spacing-2xl);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xl);
 }
 
-.dashboard-daily__analytic{
+.dashboard-daily__analytic {
     grid-area: 1 / 1 / 2 / 4;
 }
 
-.dashboard-analytics__nutrition{
+.dashboard-analytics__nutrition {
     width: 20%;
     display: flex;
     flex-direction: column;
     gap: var(--spacing-3xl);
+}
+
+.dashboard-card__logo{
+    padding: var(--spacing-lg);
+    border-radius: var(--radius);
+}
+
+.dashboard-dayliCal>img {
+    background-color: #ff00001A;
+}
+
+.dashboard-protein>img {
+    background-color: #4AB8FF1A;
+}
+
+.dashboard-carbs>img {
+    background-color: #f9ce231A;
+}
+
+.dashboard-fat>img {
+    background-color: #fd51821A;
 }
