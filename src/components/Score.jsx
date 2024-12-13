@@ -1,4 +1,4 @@
-import { PieChart, Pie, ResponsiveContainer, Tooltip } from "recharts";
+import { PieChart, Pie, ResponsiveContainer } from "recharts";
 const data = [{ name: "A1", value: 12 }];
 
 export default function Score() {
@@ -13,8 +13,8 @@ export default function Score() {
             cy="50%"
             innerRadius={70}
             outerRadius={90}
-            startAngle={90}
-            endAngle={180}
+            startAngle={0}
+            endAngle={360}
             fill="#E60000"
           />
         </PieChart>
