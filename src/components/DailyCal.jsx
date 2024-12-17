@@ -1,4 +1,9 @@
+import useMainData from "../hooks/useMainData";
+
 export default function DailyCal() {
+
+  useMainData(12);
+
   return (
     <div className="dashboard-card dashboard-dayliCal">
       <img className="dashboard-card__logo" src="./src/assets/img/energy.svg" alt="Dayli Calories logo" />
