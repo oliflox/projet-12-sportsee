@@ -1,23 +1,22 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getUserUrls } from "../constants/BaseUrl";
 
 const useMainData = (userId) => {
+  const [keyData, setKeyData] = useState(null);
   const { mainUrl } = getUserUrls(userId);
 
   useEffect(() => {
     fetch(mainUrl)
-      .then((res) => {
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        setKeyData(data.data.keyData);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
   }, [mainUrl]);
 
-  return null;
+  return keyData;
 };
 
 export default useMainData;
