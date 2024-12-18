@@ -1,20 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getUserUrls } from "../constants/BaseUrl";
 
 const useActivity = (userId) => {
+  const [sessions, setSessions] = useState([]);
   const { activityUrl } = getUserUrls(userId);
 
   useEffect(() => {
     fetch(activityUrl)
-      .then((res) => {
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        setSessions(data.data.sessions);
+      })
+      .catch((error) => {
+        console.error("Error fetching keyData:", error);
       });
   }, [activityUrl]);
 
-  return null;
+  return sessions;
 };
 
 export default useActivity;
