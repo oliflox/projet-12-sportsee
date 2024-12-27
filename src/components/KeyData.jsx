@@ -1,4 +1,4 @@
-import { useKeyData } from "../hooks/useMainData";
+import { useKeyData } from "../hooks/useKeyData";
 import DailyCal from "./DailyCal";
 import Protein from "./Protein";
 import Carbs from "./Carbs";

@@ -1,4 +1,4 @@
-import { useUserInfos } from "../hooks/useMainData";
+import { useUserInfos } from "../hooks/useUser";
 import Graphics from "./Graphic";
 import KeyData from "./KeyData";
 
