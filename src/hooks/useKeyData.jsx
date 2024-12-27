@@ -6,17 +6,20 @@ const useKeyData = (userId) => {
   const { mainUrl } = getUserUrls(userId);
 
   useEffect(() => {
-    fetch(mainUrl)
-      .then((res) => res.json())
-      .then(({ data: { keyData } }) => {
-        setKeyData(keyData);
-      })
-      .catch((error) => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(mainUrl);
+        const result = await response.json();
+        setKeyData(result.data.keyData);
+      } catch (error) {
         console.error("Error fetching keyData:", error);
-      });
+      }
+    };
+
+    fetchData();
   }, [mainUrl]);
 
   return keyData;
 };
 
-export default useKeyData;
+export { useKeyData };
