@@ -3,12 +3,14 @@ import { getUserUrls } from "../constants/BaseUrl";
 
 const useUser = (userId) => {
   const [userData, setUserData] = useState(null);
-  const { userUrl } = getUserUrls(userId);
+  const { mainUrl } = getUserUrls(userId);
 
   useEffect(() => {
+    if (!userId) return;
+
     const fetchData = async () => {
       try {
-        const response = await fetch(userUrl);
+        const response = await fetch(mainUrl);
         const result = await response.json();
         setUserData(result.data);
       } catch (error) {
@@ -17,7 +19,7 @@ const useUser = (userId) => {
     };
 
     fetchData();
-  }, [userUrl]);
+  }, [mainUrl, userId]);
 
   return userData;
 };
