@@ -1,52 +1,60 @@
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
+import { AreaChart, Area, XAxis, Tooltip } from "recharts";
 
 const data = [
-    {
-        name: "L",
-        uv: 60,
-    },
-    {
-        name: "M",
-        uv: 45,
-    },
-    {
-        name: "M",
-        uv: 30,
-    },
-    {
-        name: "J",
-        uv: 50,
-    },
-    {
-        name: "V",
-        uv: 40,
-    },
-    {
-        name: "S",
-        uv: 35,
-    },
-    {
-        name: "D",
-        uv: 55,
-    },
+  { name: "L", value: 30 },
+  { name: "M", value: 50 },
+  { name: "M", value: 45 },
+  { name: "J", value: 70 },
+  { name: "V", value: 60 },
+  { name: "S", value: 80 },
+  { name: "D", value: 100 },
 ];
 
-export default function AverageLength() {
+const CustomTooltip = ({ active, payload }) => {
+  if (active && payload && payload.length) {
+    return <div className="tooltip">{`${payload[0].value} min`}</div>;
+  }
+  return null;
+};
+
+const StyledAreaChart = () => {
   return (
-    <div className="dashboard-average__length">
-      <ResponsiveContainer width="100%" height="100%">
-        <AreaChart width={500} height={400} data={data}>
-          <XAxis dataKey="name" />
-          <Tooltip />
-          <Area type="monotone" dataKey="uv" stroke="#0000000" fill="#E60000" />
-        </AreaChart>
-      </ResponsiveContainer>
+    <div className="chart-container">
+      <h3 className="chart-title">Durée moyenne des sessions</h3>
+      <AreaChart
+        width={360}
+        height={200}
+        data={data}
+      >
+        <defs>
+          <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="white" stopOpacity={1} />
+            <stop offset="100%" stopColor="white" stopOpacity={0} />
+          </linearGradient>
+        </defs>
+        <XAxis
+          dataKey="name"
+          tick={{ fill: "white"}}
+          axisLine={false}
+          tickLine={false}
+        />
+        <Tooltip content={<CustomTooltip />} />
+        <Area
+          type="monotone"
+          dataKey="value"
+          stroke="white"
+          strokeWidth={2}
+          fill="url(#colorGradient)"
+          activeDot={{
+            r: 5,
+            fill: "white",
+            stroke: "white",
+            strokeWidth: 2,
+          }}
+        />
+      </AreaChart>
     </div>
   );
-}
+};
+
+export default StyledAreaChart;

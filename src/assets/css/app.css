@@ -140,3 +140,37 @@
 .dashboard-fat>img {
     background-color: #fd51821A;
 }
+
+.dashboard-average__length{
+    background-color: var(--primary);
+    border-radius: var(--radius);
+}
+/* Conteneur général pour le graphique */
+.chart-container {
+    background-color: red;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  /* Titre du graphique */
+  .chart-title {
+    color: white;
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .tooltip {
+    background-color: white;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
