@@ -24,8 +24,6 @@ export default function DayliAnalytics() {
     <div className="dashboard-daily__analytic dashboard-card">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
-          width={500}
-          height={300}
           data={formattedData}
           margin={{
             top: 5,

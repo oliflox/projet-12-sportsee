@@ -1,24 +1,39 @@
-import { PieChart, Pie, ResponsiveContainer } from "recharts";
-const data = [{ name: "A1", value: 12 }];
 
-export default function Score() {
+import { RadialBarChart, RadialBar, ResponsiveContainer } from "recharts";
+
+const data = [
+  {
+    name: "Score",
+    value: 12,
+    fill: "#FF0000", // Rouge pour la barre
+  },
+];
+
+const App = () => {
   return (
-    <div className="dashboard-score">
+    <div className="score-chart-container">
+      <h2 className="score-chart-title">Score</h2>
       <ResponsiveContainer width="100%" height="100%">
-        <PieChart width={260} height={260}>
-          <Pie
-            data={data}
-            dataKey="value"
-            cx="50%"
-            cy="50%"
-            innerRadius={70}
-            outerRadius={90}
-            startAngle={0}
-            endAngle={360}
-            fill="#E60000"
-          />
-        </PieChart>
+      <RadialBarChart
+        className="radial-bar-chart"
+        cx="50%"
+        cy="50%"
+        innerRadius="70%"
+        outerRadius="100%"
+        barSize={10}
+        data={data}
+        startAngle={90}
+        endAngle={450} // 360° + 90° pour que la barre commence en haut
+      >
+        <RadialBar minAngle={15} background clockWise dataKey="value" />
+      </RadialBarChart>
       </ResponsiveContainer>
+      <div>
+        <p className="score-chart-value">12%</p>
+        <p className="score-chart-max">de votre objectif</p>
+      </div>
     </div>
   );
-}
+};
+
+export default App;

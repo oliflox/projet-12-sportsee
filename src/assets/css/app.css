@@ -145,13 +145,12 @@
     background-color: var(--primary);
     border-radius: var(--radius);
 }
+
 /* Conteneur général pour le graphique */
 .chart-container {
     background-color: red;
     padding: 20px;
     border-radius: 10px;
-    width: 400px;
-    height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -174,3 +173,45 @@
     font-size: 14px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
+
+.radar-chart-container {
+    background-color: #2c2c2c;
+    border-radius: 10px;
+  }
+  
+  .radar-grid {
+    stroke: white;
+  }
+
+  
+  /* App.css */
+.score-chart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+  }
+  
+  .score-chart-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 10px;
+  }
+  
+  .radial-bar-chart {
+    position: relative;
+  }
+  
+  .score-chart-label {
+    font-size: 1.5rem;
+    font-weight: bold;
+    fill: #000;
+  }
+  
+  .score-chart-subtitle {
+    font-size: 0.8rem;
+    fill: #888;
+  }
+  
