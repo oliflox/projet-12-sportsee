@@ -1,15 +1,13 @@
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from "recharts";
-
-const data = [
-  { subject: "Intensité", value: 90 },
-  { subject: "Vitesse", value: 80 },
-  { subject: "Force", value: 70 },
-  { subject: "Endurance", value: 60 },
-  { subject: "Énergie", value: 50 },
-  { subject: "Cardio", value: 85 },
-];
+import usePerformance from "../hooks/usePerformance";
 
 const StyledRadarChart = () => {
+  const performance = usePerformance(12);
+  const data = performance.map((item) => ({
+    subject: item.kind,
+    value: item.value,
+  }));
+
   return (
     <div className="radar-chart-container">
       <ResponsiveContainer width="100%" height="100%">
