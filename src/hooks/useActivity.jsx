@@ -6,14 +6,17 @@ const useActivity = (userId) => {
   const { activityUrl } = getUserUrls(userId);
 
   useEffect(() => {
-    fetch(activityUrl)
-      .then((res) => res.json())
-      .then((data) => {
-        setSessions(data.data.sessions);
-      })
-      .catch((error) => {
-        console.error("Error fetching keyData:", error);
-      });
+    const fetchData = async () => {
+      try {
+        const activityRes = await fetch(activityUrl);
+        const activityData = await activityRes.json();
+        setSessions(activityData.data.sessions);
+      } catch (error) {
+        console.error("Error fetching sessions:", error);
+      }
+    };
+
+    fetchData();
   }, [activityUrl]);
 
   return sessions;
