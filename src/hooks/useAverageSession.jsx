@@ -1,20 +1,32 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getUserUrls } from "../constants/BaseUrl";
 
 const useAverageSession = (userId) => {
-  const { averageUrl } = getUserUrls(userId);
+  const [sessions, setSessions] = useState([]);
+  const { averageSessionsUrl, activityUrl } = getUserUrls(userId);
 
   useEffect(() => {
-    fetch(averageUrl)
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        console.log(data);
-      });
-  }, [averageUrl]);
+    const fetchData = async () => {
+      try {
+        const [averageSessionsRes, activityRes] = await Promise.all([
+          fetch(averageSessionsUrl),
+          fetch(activityUrl),
+        ]);
+        const averageSessionsData = await averageSessionsRes.json();
+        const activityData = await activityRes.json();
+        setSessions({
+          averageSessions: averageSessionsData.data.sessions,
+          activitySessions: activityData.data.sessions,
+        });
+      } catch (error) {
+        console.error("Error fetching sessions:", error);
+      }
+    };
 
-  return null;
+    fetchData();
+  }, [averageSessionsUrl, activityUrl]);
+
+  return sessions;
 };
 
 export default useAverageSession;

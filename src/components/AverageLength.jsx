@@ -1,14 +1,5 @@
 import { AreaChart, Area, XAxis, Tooltip } from "recharts";
-
-const data = [
-  { name: "L", value: 30 },
-  { name: "M", value: 50 },
-  { name: "M", value: 45 },
-  { name: "J", value: 70 },
-  { name: "V", value: 60 },
-  { name: "S", value: 80 },
-  { name: "D", value: 100 },
-];
+import useAverageSession from "../hooks/useAverageSession";  
 
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
@@ -18,6 +9,12 @@ const CustomTooltip = ({ active, payload }) => {
 };
 
 const StyledAreaChart = () => {
+  const sessions = useAverageSession(12);
+  const data = sessions.averageSessions?.map(session => ({
+    name: session.day,
+    value: session.sessionLength
+  })) || [];
+
   return (
     <div className="chart-container">
       <h3 className="chart-title">Durée moyenne des sessions</h3>

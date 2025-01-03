@@ -4,8 +4,8 @@ import { RadialBarChart, RadialBar, ResponsiveContainer } from "recharts";
 const data = [
   {
     name: "Score",
-    value: 12,
-    fill: "#FF0000", // Rouge pour la barre
+    value: 32,
+    fill: "#FF0000",
   },
 ];
 
@@ -23,7 +23,7 @@ const App = () => {
         barSize={10}
         data={data}
         startAngle={90}
-        endAngle={450} // 360° + 90° pour que la barre commence en haut
+        endAngle={450}
       >
         <RadialBar minAngle={15} background clockWise dataKey="value" />
       </RadialBarChart>

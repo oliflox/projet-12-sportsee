@@ -34,10 +34,18 @@ export default function DayliAnalytics() {
           barCategoryGap="20%"
           barGap={10}
         >
-          <CartesianGrid strokeDasharray="3" horizontal={true} vertical={false} />
-          <XAxis/>
-          <YAxis yAxisId="right" orientation="right" dataKey="calories"/>
-          <YAxis yAxisId="left" orientation="left" dataKey="kilogram" tickCount={3}/>
+          <CartesianGrid
+            strokeDasharray="3"
+            vertical={false}
+          />
+          <XAxis />
+          <YAxis yAxisId="right" orientation="right" dataKey="calories" hide />
+          <YAxis
+            yAxisId="left"
+            orientation="left"
+            dataKey="kilogram"
+            tickCount={3}
+          />
           <Tooltip />
           <Legend verticalAlign="top" align="right" />
           <Bar
