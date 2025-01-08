@@ -1,8 +1,10 @@
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from "recharts";
 import usePerformance from "../hooks/usePerformance";
+import useUserId from "../hooks/useUserId";
 
 const StyledRadarChart = () => {
-  const performance = usePerformance(12);
+  const userId = useUserId();
+  const performance = usePerformance(userId);
   const data = performance.map((item) => ({
     subject: item.kind,
     value: item.value,

@@ -1,11 +1,13 @@
 import { useKeyData } from "../hooks/useKeyData";
+import useUserId from "../hooks/useUserId";
 import DailyCal from "./DailyCal";
 import Protein from "./Protein";
 import Carbs from "./Carbs";
 import Fat from "./Fat";
 
 export default function KeyData() {
-  const keyData = useKeyData(12);
+  const userId = useUserId();
+  const keyData = useKeyData(userId);
 
   return (
     <article className="dashboard-analytics__nutrition">

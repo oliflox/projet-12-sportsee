@@ -1,5 +1,6 @@
 import { AreaChart, Area, XAxis, Tooltip } from "recharts";
 import useAverageSession from "../hooks/useAverageSession";  
+import useUserId from "../hooks/useUserId";
 
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
@@ -9,7 +10,8 @@ const CustomTooltip = ({ active, payload }) => {
 };
 
 const StyledAreaChart = () => {
-  const sessions = useAverageSession(12);
+  const userId = useUserId();
+  const sessions = useAverageSession(userId);
   const data = sessions.averageSessions?.map(session => ({
     name: session.day,
     value: session.sessionLength

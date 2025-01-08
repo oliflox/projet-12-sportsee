@@ -1,9 +1,11 @@
 import { useUser } from "../hooks/useUser";
+import useUserId from "../hooks/useUserId";
 import Graphics from "./Graphic";
 import KeyData from "./KeyData";
 
 export default function Dashboard() {
-  const userData = useUser(12);
+  const userId = useUserId();
+  const userData = useUser(userId);
 
   return (
     <section className="dashboard">
