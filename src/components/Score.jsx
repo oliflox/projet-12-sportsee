@@ -1,39 +1,50 @@
-
-import { RadialBarChart, RadialBar, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, ResponsiveContainer, Cell } from "recharts";
 
 const data = [
-  {
-    name: "Score",
-    value: 32,
-    fill: "#FF0000",
-  },
+  { name: "A1", value: 12 },
+  { name: "A2", value: 88},
 ];
 
-const App = () => {
+const Scorecharts = () => {
   return (
-    <div className="score-chart-container">
-      <h2 className="score-chart-title">Score</h2>
-      <ResponsiveContainer width="100%" height="100%">
-      <RadialBarChart
-        className="radial-bar-chart"
-        cx="50%"
-        cy="50%"
-        innerRadius="70%"
-        outerRadius="100%"
-        barSize={10}
-        data={data}
-        startAngle={90}
-        endAngle={450}
-      >
-        <RadialBar minAngle={15} background clockWise dataKey="value" />
-      </RadialBarChart>
-      </ResponsiveContainer>
-      <div>
-        <p className="score-chart-value">12%</p>
-        <p className="score-chart-max">de votre objectif</p>
-      </div>
-    </div>
+    <ResponsiveContainer className="Scorecharts-container" width="100%" height="100%">
+      <PieChart>
+        <Pie
+          data={data}
+          cx="50%"
+          cy="50%"
+          innerRadius={70}
+          outerRadius={80}
+          startAngle={90}
+          endAngle={450}
+          cornerRadius={10}
+        >
+          <Cell key="cell-0" fill="#E60000" />
+          <Cell key="cell-1" fill="transparent" />
+        </Pie>
+        <text
+          x="50%"
+          y="50%"
+          textAnchor="middle"
+          dominantBaseline="middle"
+          fontSize="24px"
+          fontWeight="bold"
+        >
+          {data[0].value}%
+        </text>
+        <text
+          x="50%"
+          y="60%"
+          textAnchor="middle"
+          dominantBaseline="middle"
+          fontSize="14px"
+          fill="gray"
+        >
+          de votre objectif
+        </text>
+      </PieChart>
+    </ResponsiveContainer>
   );
 };
 
-export default App;
+export default Scorecharts;

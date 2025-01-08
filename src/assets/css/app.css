@@ -72,14 +72,14 @@
 }
 
 .dashboard {
-    padding: var(--spacing-7xl);
+    padding: var(--spacing-3xl);
     width: 100%;
 }
 
 .dashboard-title {
     font-size: var(--title-font-size);
     font-weight: var(--bold);
-    margin-bottom: var(--spacing-3xl);
+    margin-bottom: var(--spacing-sm);
 }
 
 .username {
@@ -87,7 +87,7 @@
 }
 
 .dashboard-analytics {
-    margin: var(--spacing-8xl) 0;
+    margin: var(--spacing-2xl) 0;
     display: flex;
     gap: var(--spacing-2xl);
 }
@@ -103,7 +103,7 @@
 .dashboard-card {
     background-color: var(--lightgray);
     border-radius: var(--radius);
-    padding: var(--spacing-2xl);
+    padding: var(--spacing-xl);
     display: flex;
     align-items: center;
     gap: var(--spacing-xl);
@@ -146,9 +146,8 @@
     border-radius: var(--radius);
 }
 
-/* Conteneur général pour le graphique */
 .chart-container {
-    background-color: red;
+    background-color: #E60000;
     padding: 20px;
     border-radius: 10px;
     display: flex;
@@ -156,7 +155,6 @@
     justify-content: space-between;
   }
   
-  /* Titre du graphique */
   .chart-title {
     color: white;
     text-align: left;
@@ -183,9 +181,7 @@
     stroke: white;
   }
 
-  
-  /* App.css */
-.score-chart-container {
+  .score-chart-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -213,5 +209,10 @@
   .score-chart-subtitle {
     font-size: 0.8rem;
     fill: #888;
+  }
+
+  .Scorecharts-container{
+    background-color: var(--lightgray);
+    border-radius: var(--radius);
   }
   

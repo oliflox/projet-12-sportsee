@@ -23,8 +23,8 @@ const StyledRadarChart = () => {
           <Radar
             name="Performance"
             dataKey="value"
-            stroke="red"
-            fill="red"
+            stroke="#E60000"
+            fill="#E60000"
             fillOpacity={0.6}
             className="radar-shape"
           />
