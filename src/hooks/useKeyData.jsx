@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { getUserUrls } from "../constants/BaseUrl";
+import { getMainUrl } from "../api/getUser";
 
 const useKeyData = (userId) => {
   const [keyData, setKeyData] = useState(null);
-  const { mainUrl } = getUserUrls(userId);
+  const mainUrl = getMainUrl(userId);
 
   useEffect(() => {
     const fetchData = async () => {

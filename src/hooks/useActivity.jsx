@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { getUserUrls } from "../constants/BaseUrl";
+import { getActivityUrl } from "../api/getActivity";
 
 const useActivity = (userId) => {
   const [sessions, setSessions] = useState([]);
-  const { activityUrl } = getUserUrls(userId);
+  const activityUrl = getActivityUrl(userId);
 
   useEffect(() => {
     const fetchData = async () => {

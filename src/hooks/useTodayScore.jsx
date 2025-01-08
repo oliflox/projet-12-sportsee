@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { getUserUrls } from "../constants/BaseUrl";
+import { getMainUrl } from "../api/getUser";
 
 const useTodayScore = (userId) => {
   const [todayScore, setTodayScore] = useState(null);
-  const { mainUrl } = getUserUrls(userId);
+  const mainUrl = getMainUrl(userId);
 
   useEffect(() => {
     fetch(mainUrl)

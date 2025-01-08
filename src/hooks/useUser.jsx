@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { getUserUrls } from "../constants/BaseUrl";
+import { getMainUrl } from "../api/getUser";
 
 const useUser = (userId) => {
   const [userData, setUserData] = useState(null);
-  const { mainUrl } = getUserUrls(userId);
+  const mainUrl = getMainUrl(userId);
 
   useEffect(() => {
     if (!userId) return;

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { getUserUrls } from "../constants/BaseUrl";
+import { getPerformanceUrl } from "../api/getPerformance";
 
 const usePerformance = (userId) => {
   const [performance, setPerformance] = useState([]);
-  const { performanceUrl } = getUserUrls(userId);
+  const performanceUrl = getPerformanceUrl(userId);
 
   useEffect(() => {
     const fetchData = async () => {

@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { getUserUrls } from "../constants/BaseUrl";
+import { getAverageSessionsUrl } from "../api/getAverageSessions";
+import { getActivityUrl } from "../api/getActivity";
 
 const useAverageSession = (userId) => {
   const [sessions, setSessions] = useState([]);
-  const { averageSessionsUrl, activityUrl } = getUserUrls(userId);
+  const averageSessionsUrl = getAverageSessionsUrl(userId);
+  const activityUrl = getActivityUrl(userId);
 
   useEffect(() => {
     const fetchData = async () => {
