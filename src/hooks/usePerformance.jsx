@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
-import { getPerformanceUrl } from "../api/getPerformance";
+import { fetchPerformanceData } from "../api/getPerformance";
 
 const usePerformance = (userId) => {
   const [performance, setPerformance] = useState([]);
-  const performanceUrl = getPerformanceUrl(userId);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(performanceUrl);
-        const data = await res.json();
+        const data = await fetchPerformanceData(userId);
         if (data.data && Array.isArray(data.data.data)) {
           const kindMapping = data.data.kind;
           const mappedData = data.data.data.map(item => ({
@@ -26,7 +24,7 @@ const usePerformance = (userId) => {
     };
 
     fetchData();
-  }, [performanceUrl]);
+  }, [userId]);
 
   return performance;
 };

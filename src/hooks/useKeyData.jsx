@@ -1,15 +1,13 @@
 import { useState, useEffect } from "react";
-import { getMainUrl } from "../api/getUser";
+import { fetchUserData } from "../api/getUser";
 
 const useKeyData = (userId) => {
   const [keyData, setKeyData] = useState(null);
-  const mainUrl = getMainUrl(userId);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(mainUrl);
-        const result = await response.json();
+        const result = await fetchUserData(userId);
         setKeyData(result.data.keyData);
       } catch (error) {
         console.error("Error fetching keyData:", error);
@@ -17,7 +15,7 @@ const useKeyData = (userId) => {
     };
 
     fetchData();
-  }, [mainUrl]);
+  }, [userId]);
 
   return keyData;
 };

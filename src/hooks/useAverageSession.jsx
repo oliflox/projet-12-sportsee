@@ -1,21 +1,17 @@
 import { useEffect, useState } from "react";
-import { getAverageSessionsUrl } from "../api/getAverageSessions";
-import { getActivityUrl } from "../api/getActivity";
+import { fetchAverageSessionsData } from "../api/getAverageSessions";
+import { fetchActivityData } from "../api/getActivity";
 
 const useAverageSession = (userId) => {
   const [sessions, setSessions] = useState([]);
-  const averageSessionsUrl = getAverageSessionsUrl(userId);
-  const activityUrl = getActivityUrl(userId);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [averageSessionsRes, activityRes] = await Promise.all([
-          fetch(averageSessionsUrl),
-          fetch(activityUrl),
+        const [averageSessionsData, activityData] = await Promise.all([
+          fetchAverageSessionsData(userId),
+          fetchActivityData(userId),
         ]);
-        const averageSessionsData = await averageSessionsRes.json();
-        const activityData = await activityRes.json();
         setSessions({
           averageSessions: averageSessionsData.data.sessions,
           activitySessions: activityData.data.sessions,
@@ -26,7 +22,7 @@ const useAverageSession = (userId) => {
     };
 
     fetchData();
-  }, [averageSessionsUrl, activityUrl]);
+  }, [userId]);
 
   return sessions;
 };

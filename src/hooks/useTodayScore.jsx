@@ -1,20 +1,21 @@
 import { useState, useEffect } from "react";
-import { getMainUrl } from "../api/getUser";
+import { fetchUserData } from "../api/getUser";
 
 const useTodayScore = (userId) => {
   const [todayScore, setTodayScore] = useState(null);
-  const mainUrl = getMainUrl(userId);
 
   useEffect(() => {
-    fetch(mainUrl)
-      .then((res) => res.json())
-      .then(({ data: { todayScore } }) => {
+    const fetchData = async () => {
+      try {
+        const { data: { todayScore } } = await fetchUserData(userId);
         setTodayScore(todayScore);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Error fetching todayScore:", error);
-      });
-  }, [mainUrl]);
+      }
+    };
+
+    fetchData();
+  }, [userId]);
 
   return todayScore;
 };

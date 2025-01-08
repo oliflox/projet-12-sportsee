@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
-import { getActivityUrl } from "../api/getActivity";
+import { fetchActivityData } from "../api/getActivity";
 
 const useActivity = (userId) => {
   const [sessions, setSessions] = useState([]);
-  const activityUrl = getActivityUrl(userId);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const activityRes = await fetch(activityUrl);
-        const activityData = await activityRes.json();
+        const activityData = await fetchActivityData(userId);
         setSessions(activityData.data.sessions);
       } catch (error) {
         console.error("Error fetching sessions:", error);
@@ -17,7 +15,7 @@ const useActivity = (userId) => {
     };
 
     fetchData();
-  }, [activityUrl]);
+  }, [userId]);
 
   return sessions;
 };
