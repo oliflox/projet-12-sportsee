@@ -110,6 +110,9 @@
 }
 
 .dashboard-daily__analytic {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     grid-area: 1 / 1 / 2 / 4;
 }
 

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { fetchActivityData } from "../api/getActivity";
+import useUserId from "../hooks/useUserId";
 
-const useActivity = (userId) => {
+const useActivity = () => {
   const [sessions, setSessions] = useState([]);
+  const userId = useUserId();
 
   useEffect(() => {
     const fetchData = async () => {
