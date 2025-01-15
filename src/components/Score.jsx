@@ -1,11 +1,12 @@
 import { PieChart, Pie, ResponsiveContainer, Cell } from "recharts";
 
-const data = [
-  { name: "A1", value: 12 },
-  { name: "A2", value: 88},
-];
-
 const Scorecharts = () => {
+
+  const data = [
+    { name: "A1", value:12},
+    { name: "A2", value: 88},
+  ];
+
   return (
     <ResponsiveContainer className="Scorecharts-container" width="100%" height="100%">
       <PieChart>
