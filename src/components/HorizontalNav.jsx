@@ -1,6 +1,6 @@
 export default function HorizontalNav() {
   return (
-    <header className="Header">
+    <header className="header">
       <nav className="horizontal-nav">
         <div className="horizontal-nav__logo">
           <img src="./src/assets/img/logo.png" alt="Logo" />

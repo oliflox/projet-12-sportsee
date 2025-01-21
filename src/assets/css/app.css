@@ -1,11 +1,12 @@
 @import 'variables.css';
 @import 'normalize.css';
 
-.Header {
-    position: absolute;
+.header {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
+    z-index: 1000;
 }
 
 .horizontal-nav {
@@ -34,16 +35,20 @@
 
 .dashboard-container {
     display: flex;
-    padding-top: 90px;
+    margin-top: var(--spacing-8xl);
+    margin-left: var(--spacing-11xl);
 }
 
 .vertical-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 999;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: calc(100vh - 90px);
-    width: fit-content;
     padding: var(--spacing-4xl) var(--spacing-2xl);
     background-color: var(--black);
 }
@@ -72,14 +77,14 @@
 }
 
 .dashboard {
-    padding: var(--spacing-3xl);
+    padding: var(--spacing-6xl) var(--spacing-10xl);
     width: 100%;
 }
 
 .dashboard-title {
     font-size: var(--title-font-size);
     font-weight: var(--bold);
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-3xl);
 }
 
 .username {
@@ -87,7 +92,7 @@
 }
 
 .dashboard-analytics {
-    margin: var(--spacing-2xl) 0;
+    margin: var(--spacing-8xl) 0;
     display: flex;
     gap: var(--spacing-2xl);
 }
@@ -97,7 +102,7 @@
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
     gap: var(--spacing-2xl);
-    width: 80%;
+    width: 100%;
 }
 
 .dashboard-card {
@@ -116,6 +121,10 @@
     grid-area: 1 / 1 / 2 / 4;
 }
 
+.grid-item{
+    height: 100%;
+}
+
 .dashboard-analytics__nutrition {
     width: 20%;
     display: flex;
@@ -123,7 +132,7 @@
     gap: var(--spacing-3xl);
 }
 
-.dashboard-card__logo{
+.dashboard-card__logo {
     padding: var(--spacing-lg);
     border-radius: var(--radius);
 }
@@ -144,78 +153,77 @@
     background-color: #fd51821A;
 }
 
-.dashboard-average__length{
+.dashboard-average__length {
     background-color: var(--primary);
     border-radius: var(--radius);
 }
 
 .chart-container {
-    background-color: #E60000;
+    background-color: var(--primary);
     padding: 20px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  }
-  
-  .chart-title {
+}
+
+.chart-title {
     color: white;
     text-align: left;
     margin-bottom: 20px;
     font-size: 18px;
     font-weight: bold;
-  }
-  
-  .tooltip {
+}
+
+.tooltip {
     background-color: white;
     color: black;
     padding: 5px 10px;
     border-radius: 10px;
     font-size: 14px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  }
+}
 
 .radar-chart-container {
     background-color: #2c2c2c;
     border-radius: 10px;
-  }
-  
-  .radar-grid {
-    stroke: white;
-  }
+}
 
-  .score-chart-container {
+.radar-grid {
+    stroke: white;
+}
+
+.score-chart-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: 20px;
-  }
-  
-  .score-chart-title {
+}
+
+.score-chart-title {
     font-size: 1rem;
     font-weight: bold;
     color: #000;
     margin-bottom: 10px;
-  }
-  
-  .radial-bar-chart {
+}
+
+.radial-bar-chart {
     position: relative;
-  }
-  
-  .score-chart-label {
+}
+
+.score-chart-label {
     font-size: 1.5rem;
     font-weight: bold;
     fill: #000;
-  }
-  
-  .score-chart-subtitle {
+}
+
+.score-chart-subtitle {
     font-size: 0.8rem;
     fill: #888;
-  }
+}
 
-  .Scorecharts-container{
+.Scorecharts-container {
     background-color: var(--lightgray);
     border-radius: var(--radius);
-  }
-  
+}

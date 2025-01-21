@@ -21,7 +21,7 @@ const Scorecharts = () => {
           cornerRadius={10}
         >
           <Cell key="cell-0" fill="#E60000" />
-          <Cell key="cell-1" fill="transparent" />
+          <Cell key="cell-1" fill="lightgray" />
         </Pie>
         <text
           x="50%"

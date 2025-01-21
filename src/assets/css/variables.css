@@ -6,6 +6,7 @@
     --black: #020203;
     --primary: #E60000;
     --lightgray: #FBFBFB;
+    --gray: #1f1f1f;
 
     --radius: 8px;
 
@@ -32,6 +33,9 @@
     --spacing-6xl: 3.75rem;
     --spacing-7xl: 4rem;
     --spacing-8xl: 5rem;
+    --spacing-9xl: 6rem;
+    --spacing-10xl: 7rem;
+    --spacing-11xl: 8rem;
 
     --spacing-body: 100px;
     --spacing-collapse: 200px;
