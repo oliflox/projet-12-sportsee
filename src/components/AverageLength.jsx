@@ -4,7 +4,7 @@ import useUserId from "../hooks/useUserId";
 
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
-    return <div className="tooltip">{`${payload[0].value} min`}</div>;
+    return <div className="average-tooltip">{`${payload[0].value} min`}</div>;
   }
   return null;
 };

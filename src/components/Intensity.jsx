@@ -11,7 +11,7 @@ const StyledRadarChart = () => {
   }));
 
   return (
-    <div className="radar-chart-container">
+    <div className="radar-chart-container grid-item">
       <ResponsiveContainer width="100%" height="100%">
         <RadarChart cx="50%" cy="50%" outerRadius="70%" data={data}>
           <PolarGrid className="radar-grid" />

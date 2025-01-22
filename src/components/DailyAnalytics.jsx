@@ -11,6 +11,18 @@ import {
 import useActivity from "../hooks/useActivity";
 import useUserId from "../hooks/useUserId";
 
+const CustomTooltip = ({ active, payload }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="DailyTooltip">
+        <p>{`${payload[0].value} Kg`}</p>
+        <p>{`${payload[1].value} Kcal`}</p>
+      </div>
+    );
+  }
+  return null;
+};
+
 export default function DailyAnalytics() {
   const userId = useUserId();
   const sessions = useActivity(userId);
@@ -27,19 +39,22 @@ export default function DailyAnalytics() {
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={formattedData} barCategoryGap="20%" barGap={10}>
           <CartesianGrid strokeDasharray="3" vertical={false} />
-          <XAxis />
+          <XAxis axisLine={false} tickLine={false} />
           <YAxis yAxisId="right" orientation="right" dataKey="calories" hide />
           <YAxis
             yAxisId="left"
-            orientation="left"
+            orientation="right"
             dataKey="kilogram"
             tickCount={3}
+            axisLine={false}
+            tickLine={false}
           />
-          <Tooltip />
-          <Legend verticalAlign="top" align="right" />
+          <Tooltip content={<CustomTooltip />} />
+          <Legend wrapperStyle={{ paddingBottom: 30 }} verticalAlign="top" align="right"  iconType="circle" />
           <Bar
             yAxisId="left"
             dataKey="kilogram"
+            name="Poids (kg)"
             fill="#020203"
             radius={[10, 10, 0, 0]}
             barSize={10}
@@ -47,6 +62,7 @@ export default function DailyAnalytics() {
           <Bar
             yAxisId="right"
             dataKey="calories"
+            name="Calories brûlées (kCal)"
             fill="#E60000"
             radius={[10, 10, 0, 0]}
             barSize={10}
