@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetchUserData } from "../api/getUser";
+import { handleError, handleNoData } from "../utils/errorHandler";
 
 const useUser = (userId) => {
   const [userData, setUserData] = useState(null);
@@ -10,9 +11,13 @@ const useUser = (userId) => {
     const fetchData = async () => {
       try {
         const result = await fetchUserData(userId);
-        setUserData(result.data);
+        if (!result.data) {
+          handleNoData();
+        } else {
+          setUserData(result.data);
+        }
       } catch (error) {
-        console.error("Error fetching userData:", error);
+        handleError(error);
       }
     };
 

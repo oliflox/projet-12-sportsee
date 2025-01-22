@@ -246,3 +246,18 @@
   text-align: center;
   line-height: var(--spacing-xl);
 }
+
+.errorDiv{
+    background-color: #f44336;
+    color: white;
+    position: fixed;
+    top: 110px;
+    right: 20px;
+    padding: var(--spacing-lg);
+    border-radius: 5px;
+    z-index: 100000000;
+}
+
+.hide{
+    display: none;
+}
