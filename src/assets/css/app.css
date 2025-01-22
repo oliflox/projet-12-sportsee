@@ -160,69 +160,47 @@
     border-radius: var(--radius);
 }
 
+.dashboard-card__value{
+    font-weight: var(--bold);
+    font-size: 20px;
+}
+
+.dashboard-card__title{
+    color: var(--gray);
+    font-size: 14px;
+}
+
 .chart-container {
     background-color: var(--primary);
-    padding: 20px;
-    border-radius: 10px;
+    padding: var(--spacing-lg);
+    border-radius: var(--spacing-sm);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
 .chart-title {
-    color: white;
-    text-align: left;
-    margin-bottom: 20px;
-    font-size: 18px;
-    font-weight: bold;
+    color: var(--white);
+    margin-bottom: var(--spacing-lg);
+    font-weight: var(--bold);
 }
 
 .average-tooltip {
-    background-color: white;
-    color: black;
-    padding: 5px 10px;
-    border-radius: 10px;
+    background-color: var(--white);
+    color: var(--black);
+    padding: var(--spacing-xxs) var(--spacing-sm);
+    border-radius: var( --spacing-sm);
     font-size: 14px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .radar-chart-container {
     background-color: #2c2c2c;
-    border-radius: 10px;
+    border-radius: var(--spacing-sm);
 }
 
 .radar-grid {
-    stroke: white;
-}
-
-.score-chart-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 20px;
-}
-
-.score-chart-title {
-    font-size: 1rem;
-    font-weight: bold;
-    color: var(--black);
-    margin-bottom: 10px;
-}
-
-.radial-bar-chart {
-    position: relative;
-}
-
-.score-chart-label {
-    font-size: 1.5rem;
-    font-weight: bold;
-    fill: var(--black);
-}
-
-.score-chart-subtitle {
-    font-size: 0.8rem;
-    fill: #888;
+    stroke: var(--white);
 }
 
 .Scorecharts-container {
@@ -234,29 +212,37 @@
 .DailyTooltip {
   background-color: var(--primary);
   color: var(--white);
-  padding: 15px;
+  padding: var(--spacing-md);
 }
 
 .DailyTooltip p {
-  margin-bottom: 10px;
+  margin-bottom: var(--spacing-sm);
 }
 
 .score-title {
     position: absolute;
     top: var(--spacing-xl);
     left: var(--spacing-xl);
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: var(--nav-font-size);
+    font-weight: var(--bold);
     color: var(--black);
 }
 
 .score-pourcentage{
-    font-size: 26px;
-    font-weight: bold;
+    font-size: var(--nav-font-size);
+    font-weight: var(--bold);
 }
 
 .score-pourcentage-title{
-    font-size: 16px;
-    font-weight: bold;
-    color: lightgray;
+    font-weight: var(--bold);
+    color: var(--gray);
+}
+
+.score-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  line-height: var(--spacing-xl);
 }

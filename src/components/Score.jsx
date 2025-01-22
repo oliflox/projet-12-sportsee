@@ -10,8 +10,6 @@ const Scorecharts = () => {
   const userId = useUserId();
   const formattedScore = useTodayScore(userId);
 
-  console.log("Formatted Score:", formattedScore);
-
   const data = [
     {
       uv: 1.0,
@@ -25,10 +23,12 @@ const Scorecharts = () => {
 
   const renderCustomLabel = ({ cx, cy }) => {
     return (
-      <text x={cx} y={cy} textAnchor="middle" dominantBaseline="middle">
-        <tspan className="score-pourcentage" x={cx} dy="-1em">{`${data[1].uv * 100} %`}</tspan>
-        <tspan x={cx} dy="1.5em" className="score-pourcentage-title">de votre objectif</tspan>
-      </text>
+      <foreignObject x={cx - 75} y={cy - 50} width="150" height="100">
+        <div className="score-label">
+          <p className="score-pourcentage">{`${data[1].uv * 100} %`}</p>
+          <p className="score-pourcentage-title">de votre objectif</p>
+        </div>
+      </foreignObject>
     );
   };
 
@@ -41,8 +41,8 @@ const Scorecharts = () => {
           height={300}
           cx="50%"
           cy="50%"
-          innerRadius="60%"
-          outerRadius="80%"
+          innerRadius="50%"
+          outerRadius="70%"
           startAngle={90}
           endAngle={450}
           barSize={15}
