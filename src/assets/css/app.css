@@ -226,6 +226,7 @@
 }
 
 .Scorecharts-container {
+    position: relative;
     background-color: var(--lightgray);
     border-radius: var(--radius);
 }
@@ -238,4 +239,24 @@
 
 .DailyTooltip p {
   margin-bottom: 10px;
+}
+
+.score-title {
+    position: absolute;
+    top: var(--spacing-xl);
+    left: var(--spacing-xl);
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--black);
+}
+
+.score-pourcentage{
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.score-pourcentage-title{
+    font-size: 16px;
+    font-weight: bold;
+    color: lightgray;
 }

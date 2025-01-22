@@ -1,50 +1,64 @@
-import { PieChart, Pie, ResponsiveContainer, Cell } from "recharts";
+import {
+  RadialBarChart,
+  RadialBar,
+  ResponsiveContainer,
+} from "recharts";
+import useTodayScore from "../hooks/useTodayScore";
+import useUserId from "../hooks/useUserId";
 
 const Scorecharts = () => {
+  const userId = useUserId();
+  const formattedScore = useTodayScore(userId);
+
+  console.log("Formatted Score:", formattedScore);
 
   const data = [
-    { name: "A1", value:12},
-    { name: "A2", value: 88},
+    {
+      uv: 1.0,
+      fill: "#FBFBFB",
+    },
+    {
+      uv: formattedScore, 
+      fill: "red",
+    },
   ];
 
+  const renderCustomLabel = ({ cx, cy }) => {
+    return (
+      <text x={cx} y={cy} textAnchor="middle" dominantBaseline="middle">
+        <tspan className="score-pourcentage" x={cx} dy="-1em">{`${data[1].uv * 100} %`}</tspan>
+        <tspan x={cx} dy="1.5em" className="score-pourcentage-title">de votre objectif</tspan>
+      </text>
+    );
+  };
+
   return (
-    <ResponsiveContainer className="Scorecharts-container" width="100%" height="100%">
-      <PieChart>
-        <Pie
-          data={data}
+    <div className="Scorecharts-container">
+      <h2 className="score-title">Score</h2>
+      <ResponsiveContainer width="100%" height="100%">
+        <RadialBarChart
+          width={900}
+          height={300}
           cx="50%"
           cy="50%"
-          innerRadius={70}
-          outerRadius={80}
+          innerRadius="60%"
+          outerRadius="80%"
           startAngle={90}
           endAngle={450}
-          cornerRadius={10}
+          barSize={15}
+          data={data}
         >
-          <Cell key="cell-0" fill="#E60000" />
-          <Cell key="cell-1" fill="lightgray" />
-        </Pie>
-        <text
-          x="50%"
-          y="50%"
-          textAnchor="middle"
-          dominantBaseline="middle"
-          fontSize="24px"
-          fontWeight="bold"
-        >
-          {data[0].value}%
-        </text>
-        <text
-          x="50%"
-          y="60%"
-          textAnchor="middle"
-          dominantBaseline="middle"
-          fontSize="14px"
-          fill="gray"
-        >
-          de votre objectif
-        </text>
-      </PieChart>
-    </ResponsiveContainer>
+          <RadialBar
+            minAngle={15}
+            label={renderCustomLabel}
+            background
+            clockWise
+            dataKey="uv"
+            cornerRadius={15}
+          />
+        </RadialBarChart>
+      </ResponsiveContainer>
+    </div>
   );
 };
 
