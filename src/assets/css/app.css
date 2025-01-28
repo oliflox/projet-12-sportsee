@@ -71,6 +71,7 @@
 }
 
 .copyright {
+    font-size: 12px;
     writing-mode: vertical-lr;
     transform: rotate(180deg);
     color: var(--white);

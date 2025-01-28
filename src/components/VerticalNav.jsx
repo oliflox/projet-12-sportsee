@@ -16,7 +16,7 @@ export default function VerticalNav() {
           <img src="./src/assets/img/Icon4.png" alt="Icon 5" />
         </li>
       </ul>
-      <p className="copyright">copyright</p>
+      <p className="copyright">Copiryght, SportSee 2020</p>
     </section>
   );
 }
