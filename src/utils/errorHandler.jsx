@@ -1,13 +1,3 @@
-import React from 'react';
-
-const ErrorComponent = ({ message }) => {
-  return (
-    <div className="error">
-      {message}
-    </div>
-  );
-};
-
 const handleError = (error) => {
   const errorDiv = document.getElementById('errorDiv');
   if (errorDiv) {

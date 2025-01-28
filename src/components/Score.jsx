@@ -8,7 +8,11 @@ import useUserId from "../hooks/useUserId";
 
 const Scorecharts = () => {
   const userId = useUserId();
-  const formattedScore = useTodayScore(userId);
+  const formattedData = useTodayScore(userId);
+
+  if (!formattedData) {
+    return <div>Loading...</div>;
+  }
 
   const data = [
     {
@@ -16,7 +20,7 @@ const Scorecharts = () => {
       fill: "#FBFBFB",
     },
     {
-      uv: formattedScore, 
+      uv: formattedData.score || 0, 
       fill: "red",
     },
   ];

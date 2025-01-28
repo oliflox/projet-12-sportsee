@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { fetchUserData } from "../api/getUser";
+import { handleError, handleNoData } from "../utils/errorHandler";
 
-const useUser = (userId) => {
+const useUser = (userId, setError) => {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
@@ -11,17 +12,17 @@ const useUser = (userId) => {
       try {
         const result = await fetchUserData(userId);
         if (!result.data) {
-          setUserData({ error: new Error("Aucun utilisateur trouvé") });
+          handleNoData(setError)();
         } else {
           setUserData(result.data);
         }
       } catch (error) {
-        setUserData({ error });
+        handleError(setError)(error);
       }
     };
 
     fetchData();
-  }, [userId]);
+  }, [userId, setError]);
 
   return userData;
 };

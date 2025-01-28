@@ -1,23 +1,25 @@
 import { useState, useEffect } from "react";
 import fetchUserScore from "../api/getUserScore";
+import { uniformData } from "../utils/uniformData";
 
 const useTodayScore = (userId) => {
-  const [formattedScore, setFormattedScore] = useState(null);
+  const [formattedData, setFormattedData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { formattedScore } = await fetchUserScore(userId);
-        setFormattedScore(formattedScore);
+        const data = await fetchUserScore(userId);
+        const uniformedData = uniformData(data);
+        setFormattedData(uniformedData);
       } catch (error) {
-        console.error("Error fetching formattedScore:", error);
+        console.error("Error fetching formattedData:", error);
       }
     };
 
     fetchData();
   }, [userId]);
 
-  return formattedScore;
+  return formattedData;
 };
 
 export default useTodayScore;
