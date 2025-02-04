@@ -37,7 +37,7 @@ const Scorecharts = () => {
   };
 
   return (
-    <div className="Scorecharts-container">
+    <div className="score-container charts">
       <h2 className="score-title">Score</h2>
       <ResponsiveContainer width="100%" height="100%">
         <RadialBarChart

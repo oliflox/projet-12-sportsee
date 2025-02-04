@@ -19,16 +19,11 @@ const StyledAreaChart = () => {
     })) || [];
 
   return (
-    <div className="chart-container">
-      <h3 className="chart-title">Durée moyenne des sessions</h3>
+    <div className="average-container charts">
+      <h3 className="average-title">Durée moyenne des sessions</h3>
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart data={data}>
-          <defs>
-            <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="white" stopOpacity={1} />
-              <stop offset="100%" stopColor="white" stopOpacity={0} />
-            </linearGradient>
-          </defs>
+
           <XAxis
             dataKey="name"
             tick={{ fill: "white" }}

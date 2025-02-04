@@ -1,6 +1,7 @@
 @import 'variables.css';
 @import 'normalize.css';
 
+/* Header */
 .header {
     position: fixed;
     top: 0;
@@ -33,12 +34,7 @@
     font-size: var(--nav-font-size);
 }
 
-.dashboard-container {
-    display: flex;
-    margin-top: var(--spacing-8xl);
-    margin-left: var(--spacing-11xl);
-}
-
+/* Vertical Navigation */
 .vertical-nav {
     position: fixed;
     top: 0;
@@ -77,8 +73,15 @@
     color: var(--white);
 }
 
+/* Dashboard */
+.dashboard-container {
+    display: flex;
+    margin-top: var(--spacing-8xl);
+    margin-left: var(--spacing-11xl);
+}
+
 .dashboard {
-    padding: var(--spacing-6xl) var(--spacing-10xl);
+    padding: var(--spacing-6xl) var(--spacing-8xl);
     width: 100%;
 }
 
@@ -98,14 +101,6 @@
     gap: var(--spacing-2xl);
 }
 
-.dashboard-analytics__card {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: var(--spacing-2xl);
-    width: 100%;
-}
-
 .dashboard-card {
     background-color: var(--lightgray);
     border-radius: var(--radius);
@@ -113,23 +108,17 @@
     display: flex;
     align-items: center;
     gap: var(--spacing-xl);
-    
 }
 
 .dashboard-daily__analytic {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    grid-area: 1 / 1 / 2 / 4;
     gap: 0;
 }
 
-.grid-item{
-    aspect-ratio: 1/1;
-}
-
 .dashboard-analytics__nutrition {
-    width: 20%;
+    width: 25%;
     display: flex;
     flex-direction: column;
     gap: var(--spacing-3xl);
@@ -161,17 +150,38 @@
     border-radius: var(--radius);
 }
 
-.dashboard-card__value{
+.dashboard-card__value {
     font-weight: var(--bold);
     font-size: 20px;
 }
 
-.dashboard-card__title{
+.dashboard-card__title {
     color: var(--gray);
     font-size: 14px;
 }
 
-.chart-container {
+/* Charts */
+.charts {
+    height: 270px;
+}
+
+.charts-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-2xl);
+}
+
+.DailyTooltip {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: var(--spacing-md);
+}
+
+.DailyTooltip p {
+    margin-bottom: var(--spacing-sm);
+}
+
+.average-container {
     background-color: var(--primary);
     padding: var(--spacing-lg);
     border-radius: var(--spacing-sm);
@@ -180,7 +190,7 @@
     justify-content: space-between;
 }
 
-.chart-title {
+.average-title {
     color: var(--white);
     margin-bottom: var(--spacing-lg);
     font-weight: var(--bold);
@@ -190,7 +200,7 @@
     background-color: var(--white);
     color: var(--black);
     padding: var(--spacing-xxs) var(--spacing-sm);
-    border-radius: var( --spacing-sm);
+    border-radius: var(--spacing-sm);
     font-size: 14px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -204,20 +214,10 @@
     stroke: var(--white);
 }
 
-.Scorecharts-container {
+.score-container {
     position: relative;
     background-color: var(--lightgray);
     border-radius: var(--radius);
-}
-
-.DailyTooltip {
-  background-color: var(--primary);
-  color: var(--white);
-  padding: var(--spacing-md);
-}
-
-.DailyTooltip p {
-  margin-bottom: var(--spacing-sm);
 }
 
 .score-title {
@@ -229,26 +229,28 @@
     color: var(--black);
 }
 
-.score-pourcentage{
+.score-pourcentage {
     font-size: var(--nav-font-size);
     font-weight: var(--bold);
 }
 
-.score-pourcentage-title{
+.score-pourcentage-title {
     font-weight: var(--bold);
     color: var(--gray);
 }
 
 .score-label {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  line-height: var(--spacing-xl);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    line-height: var(--spacing-xl);
 }
 
-.errorDiv{
+
+/* Miscellaneous */
+.errorDiv {
     background-color: #f44336;
     color: white;
     position: fixed;
@@ -259,6 +261,28 @@
     z-index: 100000000;
 }
 
-.hide{
+.hide {
     display: none;
+}
+
+.dashboard-analytics__card {
+    display: grid;
+    grid-template-rows: 320px;
+    gap: var(--spacing-2xl);
+    width: 100%;
+}
+
+@media only screen and (max-width:1439px) {
+    .dashboard{
+        padding: var(--spacing-2xl) var(--spacing-5xl);
+
+    }
+
+    .charts{
+        height: 250px;
+    }
+
+    .charts-container{
+        grid-template-columns: repeat(2, 1fr);
+    }
 }

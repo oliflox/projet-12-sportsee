@@ -7,9 +7,11 @@ export default function Graphics() {
   return (
     <article className="dashboard-analytics__card">
       <DayliAnalytics />
-      <AverageLength />
-      <Intensity />
-      <Score />
+      <div className="charts-container">
+        <AverageLength />
+        <Intensity />
+        <Score />
+      </div>
     </article>
   );
 }
