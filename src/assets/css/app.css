@@ -267,7 +267,7 @@
 
 .dashboard-analytics__card {
     display: grid;
-    grid-template-rows: 320px;
+    grid-template-rows: 450px;
     gap: var(--spacing-2xl);
     width: 100%;
 }
