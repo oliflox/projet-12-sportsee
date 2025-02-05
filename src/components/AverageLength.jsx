@@ -12,9 +12,10 @@ const CustomTooltip = ({ active, payload }) => {
 const StyledAreaChart = () => {
   const userId = useUserId();
   const sessions = useAverageSession(userId);
+  const days = ["L", "M", "M", "J", "V", "S", "D"];
   const data =
     sessions.averageSessions?.map((session) => ({
-      name: session.day,
+      name: days[session.day - 1],
       value: session.sessionLength,
     })) || [];
 
