@@ -1,25 +1,35 @@
+import { useSyncExternalStore } from "react";
+
+let errorMessage = "";
+
 const handleError = (error) => {
-  const errorDiv = document.getElementById('errorDiv');
-  if (errorDiv) {
-    errorDiv.innerHTML = `Une erreur est survenue: ${error.message}`;
-    errorDiv.classList.remove('hide');
-  }
+  errorMessage = `Une erreur est survenue: ${error.message}`;
+  notifySubscribers();
 };
 
 const handleNoData = () => {
-  const errorDiv = document.getElementById('errorDiv');
-  if (errorDiv) {
-    errorDiv.innerHTML = "Aucun utilisateur trouvé";
-    errorDiv.classList.remove('hide');
-  }
+  errorMessage = "Aucun utilisateur trouvé";
+  notifySubscribers();
 };
 
 const clearError = () => {
-  const errorDiv = document.getElementById('errorDiv');
-  if (errorDiv) {
-    errorDiv.innerHTML = "";
-    errorDiv.classList.add('hide');
-  }
+  errorMessage = "";
+  notifySubscribers();
 };
 
-export { handleError, handleNoData, clearError };
+const subscribers = new Set();
+
+const subscribe = (callback) => {
+  subscribers.add(callback);
+  return () => subscribers.delete(callback);
+};
+
+const notifySubscribers = () => {
+  subscribers.forEach((callback) => callback());
+};
+
+const getSnapshot = () => errorMessage;
+
+const useErrorStore = () => useSyncExternalStore(subscribe, getSnapshot);
+
+export { handleError, handleNoData, clearError, useErrorStore };

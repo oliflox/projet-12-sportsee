@@ -285,4 +285,8 @@
     .charts-container{
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .dashboard-analytics__card {
+        grid-template-rows: 400px;
+    }
 }
