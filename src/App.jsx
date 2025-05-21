@@ -1,7 +1,7 @@
 import "./assets/css/App.css";
 
-import HorizontalNav from "./components/HorizontalNav";
-import VerticalNav from "./components/VerticalNav";
+import HorizontalNav from "./components/layout/HorizontalNav";
+import VerticalNav from "./components/layout/VerticalNav";
 import Dashboard from "./components/Dashboard";
 
 function App() {

@@ -1,6 +1,6 @@
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, ResponsiveContainer } from "recharts";
-import usePerformance from "../hooks/usePerformance";
-import useUserId from "../hooks/useUserId";
+import usePerformance from "../../hooks/usePerformance";
+import useUserId from "../../hooks/useUserId";
 
 const StyledRadarChart = () => {
   const userId = useUserId();

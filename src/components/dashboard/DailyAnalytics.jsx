@@ -8,8 +8,8 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import useActivity from "../hooks/useActivity";
-import useUserId from "../hooks/useUserId";
+import useActivity from "../../hooks/useActivity";
+import useUserId from "../../hooks/useUserId";
 
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {

@@ -1,6 +1,6 @@
 import { AreaChart, Area, XAxis, Tooltip, ResponsiveContainer } from "recharts";
-import useAverageSession from "../hooks/useAverageSession";
-import useUserId from "../hooks/useUserId";
+import useAverageSession from "../../hooks/useAverageSession";
+import useUserId from "../../hooks/useUserId";
 
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {

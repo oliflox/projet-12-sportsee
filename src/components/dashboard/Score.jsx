@@ -3,8 +3,8 @@ import {
   RadialBar,
   ResponsiveContainer,
 } from "recharts";
-import useTodayScore from "../hooks/useTodayScore";
-import useUserId from "../hooks/useUserId";
+import useTodayScore from "../../hooks/useTodayScore";
+import useUserId from "../../hooks/useUserId";
 
 const Scorecharts = () => {
   const userId = useUserId();

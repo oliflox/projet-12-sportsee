@@ -1,5 +1,5 @@
-import { useKeyData } from "../hooks/useKeyData";
-import useUserId from "../hooks/useUserId";
+import { useKeyData } from "../../hooks/useKeyData";
+import useUserId from "../../hooks/useUserId";
 import DailyCal from "./DailyCal";
 import Protein from "./Protein";
 import Carbs from "./Carbs";

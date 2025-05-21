@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useUser } from "../hooks/useUser";
 import useUserId from "../hooks/useUserId";
-import Graphics from "./Graphic";
-import KeyData from "./KeyData";
+import Graphics from "./charts/Graphic";
+import KeyData from "./nutrition/KeyData";
 import { useErrorStore, handleError, handleNoData, clearError } from "../utils/errorHandler";
 
 export default function Dashboard() {
