@@ -1,12 +1,7 @@
-const uniformData = (data) => {
-  return {
-    userId: data.data.id || data.data.userId,
-    score: data.data.todayScore || data.data.score,
-    calorieCount: data.data.keyData.calorieCount,
-    proteinCount: data.data.keyData.proteinCount,
-    carbohydrateCount: data.data.keyData.carbohydrateCount,
-    lipidCount: data.data.keyData.lipidCount,
-  };
-};
+const uniformData = ({ data }) => ({
+  userId: data.id || data.userId,
+  score: data.todayScore || data.score,
+  ...data.keyData
+});
 
 export { uniformData };
