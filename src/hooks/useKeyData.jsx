@@ -20,4 +20,4 @@ const useKeyData = (userId) => {
   return keyData;
 };
 
-export { useKeyData };
+export default useKeyData;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { fetchAverageSessionsData } from "../api/getAverageSessions";
 import { fetchActivityData } from "../api/getActivity";
 

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useUser } from "../hooks/useUser";
+import useUser from "../hooks/useUser";
 import useUserId from "../hooks/useUserId";
 import Graphics from "./charts/Graphic";
 import KeyData from "./nutrition/KeyData";

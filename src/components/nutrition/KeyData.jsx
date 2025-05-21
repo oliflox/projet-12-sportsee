@@ -1,4 +1,4 @@
-import { useKeyData } from "../../hooks/useKeyData";
+import useKeyData from "../../hooks/useKeyData";
 import useUserId from "../../hooks/useUserId";
 import NutritionCard from "./NutritionCard";
 import { getNutritionCardsData } from "../../data/nutritionCardsData";

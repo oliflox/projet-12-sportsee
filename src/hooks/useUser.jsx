@@ -27,4 +27,4 @@ const useUser = (userId, setError) => {
   return userData;
 };
 
-export { useUser };
+export default useUser;

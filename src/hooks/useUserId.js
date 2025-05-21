@@ -1,5 +1,7 @@
+import { useState } from 'react';
+
 const useUserId = () => {
-  const userId = 12;
+  const [userId] = useState(12);
   return userId;
 };
 
