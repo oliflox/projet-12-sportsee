@@ -1,7 +1,7 @@
-import DayliAnalytics from "../dashboard/DailyAnalytics";
-import AverageLength from "./AverageLength";
-import Intensity from "./Intensity";
-import Score from "../dashboard/Score";
+import DayliAnalytics from "./DailyAnalytics";
+import AverageLength from "../charts/AverageLength";
+import Intensity from "../charts/Intensity";
+import Score from "../charts/Score";
 
 export default function Graphics() {
   return (
