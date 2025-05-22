@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchActivityData } from "../api/getActivity";
+import { fetchActivityData } from "../api/api";
 import useUserId from "../hooks/useUserId";
 
 const useActivity = () => {

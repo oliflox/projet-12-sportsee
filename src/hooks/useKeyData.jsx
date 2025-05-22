@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchUserData } from "../api/getUser";
+import { fetchUserData } from "../api/api";
 
 const useKeyData = (userId) => {
   const [keyData, setKeyData] = useState(null);

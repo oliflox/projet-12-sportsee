@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import fetchUserScore from "../api/getUserScore";
+import { fetchUserData } from "../api/api";
 import { uniformData } from "../utils/uniformData";
 
 const useTodayScore = (userId) => {
@@ -8,7 +8,7 @@ const useTodayScore = (userId) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchUserScore(userId);
+        const data = await fetchUserData(userId);
         const uniformedData = uniformData(data);
         setFormattedData(uniformedData);
       } catch (error) {

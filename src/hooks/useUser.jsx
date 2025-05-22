@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchUserData } from "../api/getUser";
+import { fetchUserData } from "../api/api";
 import { handleError, handleNoData } from "../utils/errorHandler";
 
 const useUser = (userId, setError) => {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchPerformanceData } from "../api/getPerformance";
+import { fetchPerformanceData } from "../api/api";
 
 const usePerformance = (userId) => {
   const [performance, setPerformance] = useState([]);

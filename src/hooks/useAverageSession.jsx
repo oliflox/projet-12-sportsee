@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchAverageSessionsData } from "../api/getAverageSessions";
-import { fetchActivityData } from "../api/getActivity";
+import { fetchAverageSessionsData, fetchActivityData } from "../api/api";
 
 const useAverageSession = (userId) => {
   const [sessions, setSessions] = useState([]);
