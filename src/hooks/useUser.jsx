@@ -1,30 +1,21 @@
-import { useState, useEffect } from "react";
-import { fetchUserData } from "../api/api";
+import useApi from "./useApi";
 import { handleError, handleNoData } from "../utils/errorHandler";
 
-const useUser = (userId, setError) => {
-  const [userData, setUserData] = useState(null);
+const useUser = (userId) => {
+  const { data, error } = useApi(
+    userId,
+    'user',
+    'Erreur lors de la récupération des données utilisateur :',
+    (result) => result.data
+  );
 
-  useEffect(() => {
-    if (!userId) return;
+  if (error) {
+    handleError(error);
+  } else if (!data) {
+    handleNoData();
+  }
 
-    const fetchData = async () => {
-      try {
-        const result = await fetchUserData(userId);
-        if (!result.data) {
-          handleNoData(setError)();
-        } else {
-          setUserData(result.data);
-        }
-      } catch (error) {
-        handleError(setError)(error);
-      }
-    };
-
-    fetchData();
-  }, [userId, setError]);
-
-  return userData;
+  return { data, error };
 };
 
 export default useUser;

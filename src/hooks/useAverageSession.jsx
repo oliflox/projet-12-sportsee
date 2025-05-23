@@ -1,29 +1,24 @@
-import { useState, useEffect } from "react";
-import { fetchAverageSessionsData, fetchActivityData } from "../api/api";
+import useApi from "./useApi";
 
 const useAverageSession = (userId) => {
-  const [sessions, setSessions] = useState([]);
+  const { data: averageSessionsData } = useApi(
+    userId,
+    'average-sessions',
+    'Erreur lors de la récupération des données de sessions moyennes :',
+    (result) => result.data.sessions
+  );
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [averageSessionsData, activityData] = await Promise.all([
-          fetchAverageSessionsData(userId),
-          fetchActivityData(userId),
-        ]);
-        setSessions({
-          averageSessions: averageSessionsData.data.sessions,
-          activitySessions: activityData.data.sessions,
-        });
-      } catch (error) {
-        console.error("Error fetching sessions:", error);
-      }
-    };
+  const { data: activityData } = useApi(
+    userId,
+    'activity',
+    'Erreur lors de la récupération des données d\'activité :',
+    (result) => result.data.sessions
+  );
 
-    fetchData();
-  }, [userId]);
-
-  return sessions;
+  return {
+    averageSessions: averageSessionsData || [],
+    activitySessions: activityData || []
+  };
 };
 
 export default useAverageSession;

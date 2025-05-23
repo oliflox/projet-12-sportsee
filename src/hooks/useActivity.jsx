@@ -1,25 +1,16 @@
-import { useEffect, useState } from "react";
-import { fetchActivityData } from "../api/api";
-import useUserId from "../hooks/useUserId";
+import useApi from "./useApi";
+import useUserId from "./useUserId";
 
 const useActivity = () => {
-  const [sessions, setSessions] = useState([]);
   const userId = useUserId();
+  const { data } = useApi(
+    userId,
+    'activity',
+    'Erreur lors de la récupération des données d\'activité :',
+    (result) => result.data.sessions
+  );
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const activityData = await fetchActivityData(userId);
-        setSessions(activityData.data.sessions);
-      } catch (error) {
-        console.error("Error fetching sessions:", error);
-      }
-    };
-
-    fetchData();
-  }, [userId]);
-
-  return sessions;
+  return data || [];
 };
 
 export default useActivity;

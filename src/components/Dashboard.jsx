@@ -3,22 +3,23 @@ import useUser from "../hooks/useUser";
 import useUserId from "../hooks/useUserId";
 import Graphics from "./dashboard/Graphic";
 import KeyData from "./nutrition/KeyData";
-import { useErrorStore, handleError, handleNoData, clearError } from "../utils/errorHandler";
+import { useErrorStore, clearError } from "../utils/errorHandler";
 
 export default function Dashboard() {
   const userId = useUserId();
-  const userData = useUser(userId);
+  const { data: userData, isLoading } = useUser(userId);
   const errorMessage = useErrorStore();
 
   useEffect(() => {
-    if (!userData) {
-      handleNoData();
-    } else if (userData.error) {
-      handleError(userData.error);
-    } else {
+    if (isLoading) return;
+    if (userData) {
       clearError();
     }
-  }, [userData]);
+  }, [isLoading, userData]);
+
+  if (isLoading) {
+    return <div className="loading">Chargement...</div>;
+  }
 
   return (
     <section className="dashboard">
