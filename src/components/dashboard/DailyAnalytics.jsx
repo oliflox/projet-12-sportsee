@@ -10,6 +10,7 @@ import {
 } from "recharts";
 import useActivity from "../../hooks/useActivity";
 import useUserId from "../../hooks/useUserId";
+import { formatActivityData } from "../../utils/uniformData";
 
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
@@ -26,15 +27,10 @@ const CustomTooltip = ({ active, payload }) => {
 export default function DailyAnalytics() {
   const userId = useUserId();
   const sessions = useActivity(userId);
-
-  const formattedData = sessions.map((session) => ({
-    day: session.day,
-    kilogram: session.kilogram,
-    calories: session.calories,
-  }));
+  const formattedData = formatActivityData(sessions);
 
   return (
-    <div className="dashboard-daily__analytic dashboard-card">
+    <div className="dashboard-daily__analytic">
       <h3>Activité quotidienne</h3>
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={formattedData} barCategoryGap="20%" barGap={10}>
@@ -50,7 +46,7 @@ export default function DailyAnalytics() {
             tickLine={false}
           />
           <Tooltip content={<CustomTooltip />} />
-          <Legend wrapperStyle={{ paddingBottom: 30 }} verticalAlign="top" align="right"  iconType="circle" />
+          <Legend wrapperStyle={{ paddingBottom: 30 }} verticalAlign="top" align="right" iconType="circle" />
           <Bar
             yAxisId="left"
             dataKey="kilogram"

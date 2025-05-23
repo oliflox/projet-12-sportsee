@@ -5,6 +5,7 @@ import {
 } from "recharts";
 import useTodayScore from "../../hooks/useTodayScore";
 import useUserId from "../../hooks/useUserId";
+import { formatScoreData } from "../../utils/uniformData";
 
 const Scorecharts = () => {
   const userId = useUserId();
@@ -14,16 +15,7 @@ const Scorecharts = () => {
     return <div>Loading...</div>;
   }
 
-  const data = [
-    {
-      uv: 1.0,
-      fill: "#FBFBFB",
-    },
-    {
-      uv: formattedData.score || 0, 
-      fill: "red",
-    },
-  ];
+  const data = formatScoreData(formattedData.score);
 
   const renderCustomLabel = ({ cx, cy }) => {
     return (

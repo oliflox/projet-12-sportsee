@@ -1,6 +1,7 @@
 import { AreaChart, Area, XAxis, Tooltip, ResponsiveContainer } from "recharts";
 import useAverageSession from "../../hooks/useAverageSession";
 import useUserId from "../../hooks/useUserId";
+import { formatAverageSessions } from "../../utils/uniformData";
 
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
@@ -12,19 +13,13 @@ const CustomTooltip = ({ active, payload }) => {
 const StyledAreaChart = () => {
   const userId = useUserId();
   const sessions = useAverageSession(userId);
-  const days = ["L", "M", "M", "J", "V", "S", "D"];
-  const data =
-    sessions.averageSessions?.map((session) => ({
-      name: days[session.day - 1],
-      value: session.sessionLength,
-    })) || [];
+  const data = formatAverageSessions(sessions.averageSessions);
 
   return (
     <div className="average-container charts">
       <h3 className="average-title">Durée moyenne des sessions</h3>
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart data={data}>
-
           <XAxis
             dataKey="name"
             tick={{ fill: "white" }}

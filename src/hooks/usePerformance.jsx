@@ -6,18 +6,17 @@ const usePerformance = (userId) => {
     'performance',
     'Erreur lors de la récupération des données de performance :',
     (result) => {
-      if (result.data && Array.isArray(result.data.data)) {
-        const kindMapping = result.data.kind;
-        return result.data.data.map(item => ({
-          ...item,
-          kind: kindMapping[item.kind],
-        }));
+      if (result.data) {
+        return {
+          data: result.data.data || [],
+          kindMapping: result.data.kind || {}
+        };
       }
-      return [];
+      return { data: [], kindMapping: {} };
     }
   );
 
-  return data || [];
+  return data || { data: [], kindMapping: {} };
 };
 
 export default usePerformance;
