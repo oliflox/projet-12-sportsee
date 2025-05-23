@@ -41,7 +41,7 @@ const useBaseHook = (userId, resource, errorMessage, mockData, dataTransformer =
     };
 
     fetchData();
-  }, [userId]); // Ne dépend que de userId
+  }, [userId]); 
 
   return { data, isLoading, error };
 };
