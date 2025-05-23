@@ -3,19 +3,19 @@ import {
   RadialBar,
   ResponsiveContainer,
 } from "recharts";
-import useTodayScore from "../../hooks/useTodayScore";
 import useUserId from "../../hooks/useUserId";
 import { formatScoreData } from "../../utils/uniformData";
+import { useTodayScoreData } from "../../hooks/hooks";
 
 const Scorecharts = () => {
   const userId = useUserId();
-  const formattedData = useTodayScore(userId);
+  const score = useTodayScoreData(userId).data;
 
-  if (!formattedData) {
+  if (!score) {
     return <div>Loading...</div>;
   }
 
-  const data = formatScoreData(formattedData.score);
+  const data = formatScoreData(score);
 
   const renderCustomLabel = ({ cx, cy }) => {
     return (

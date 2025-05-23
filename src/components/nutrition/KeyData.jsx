@@ -1,11 +1,11 @@
-import useKeyData from "../../hooks/useKeyData";
+import { useKeyDataData } from "../../hooks/hooks";
 import useUserId from "../../hooks/useUserId";
 import NutritionCard from "./NutritionCard";
 import { getNutritionCardsData } from "../../data/nutritionCardsData";
 
 export default function KeyData() {
   const userId = useUserId();
-  const keyData = useKeyData(userId);
+  const keyData = useKeyDataData(userId).data;
   const nutritionCards = getNutritionCardsData(keyData);
 
   return (

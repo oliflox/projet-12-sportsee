@@ -8,9 +8,9 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import useActivity from "../../hooks/useActivity";
 import useUserId from "../../hooks/useUserId";
 import { formatActivityData } from "../../utils/uniformData";
+import { useActivityData } from "../../hooks/hooks";
 
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
@@ -26,7 +26,7 @@ const CustomTooltip = ({ active, payload }) => {
 
 export default function DailyAnalytics() {
   const userId = useUserId();
-  const sessions = useActivity(userId);
+  const sessions = useActivityData(userId).data;
   const formattedData = formatActivityData(sessions);
 
   return (

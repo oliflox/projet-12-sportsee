@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import useUser from "../hooks/useUser";
+import { useUser } from "../hooks/hooks";
 import useUserId from "../hooks/useUserId";
 import Graphics from "./dashboard/Graphic";
 import KeyData from "./nutrition/KeyData";
@@ -29,8 +29,8 @@ export default function Dashboard() {
       </h2>
       <h3>Félicitation ! Vous avez explosé vos objectifs hier &#128079;</h3>
       <section className="dashboard-analytics">
-        <Graphics />
-        <KeyData />
+        <Graphics userId={userId} />
+        <KeyData userId={userId} />
       </section>
     </section>
   );
