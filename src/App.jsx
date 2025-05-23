@@ -1,4 +1,5 @@
 import "./assets/css/App.css";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import HorizontalNav from "./components/layout/HorizontalNav";
 import VerticalNav from "./components/layout/VerticalNav";
@@ -10,7 +11,10 @@ function App() {
       <HorizontalNav />
       <section className="dashboard-container">
         <VerticalNav />
-        <Dashboard />
+        <Routes>
+          <Route path="/" element={<Navigate to="/user/12" replace />} />
+          <Route path="/user/:userId" element={<Dashboard />} />
+        </Routes>
       </section>
     </>
   );

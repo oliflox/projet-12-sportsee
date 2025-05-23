@@ -1,3 +1,5 @@
+export const IMG_PATH = "/src/assets/img/";
+
 const uniformData = ({ data }) => ({
   userId: data.id || data.userId,
   score: data.todayScore || data.score,

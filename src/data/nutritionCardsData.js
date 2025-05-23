@@ -1,8 +1,10 @@
+import { IMG_PATH } from "../utils/uniformData";
+
 export const getNutritionCardsData = (keyData) => [
   {
     value: keyData?.calorieCount,
     title: "Calories",
-    icon: "./src/assets/img/energy.svg",
+    icon: `${IMG_PATH}energy.svg`,
     iconAlt: "Calories logo",
     className: "dashboard-dayliCal",
     unit: "kCal"
@@ -10,21 +12,21 @@ export const getNutritionCardsData = (keyData) => [
   {
     value: keyData?.proteinCount,
     title: "Proteins",
-    icon: "./src/assets/img/chicken.svg",
+    icon: `${IMG_PATH}chicken.svg`,
     iconAlt: "Protein logo",
     className: "dashboard-protein"
   },
   {
     value: keyData?.carbohydrateCount,
     title: "Carbs",
-    icon: "./src/assets/img/apple.svg",
+    icon: `${IMG_PATH}apple.svg`,
     iconAlt: "Carbs logo",
     className: "dashboard-carbs"
   },
   {
     value: keyData?.lipidCount,
     title: "Fats",
-    icon: "./src/assets/img/cheeseburger.svg",
+    icon: `${IMG_PATH}cheeseburger.svg`,
     iconAlt: "Fat logo",
     className: "dashboard-fat"
   }

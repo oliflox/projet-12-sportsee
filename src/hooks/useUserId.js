@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 const useUserId = () => {
-  const [userId] = useState(12);
-  return userId;
+  const { userId } = useParams();
+  return parseInt(userId, 10);
 };
 
 export default useUserId;
