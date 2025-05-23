@@ -14,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate to="/user/12" replace />} />
           <Route path="/user/:userId" element={<Dashboard />} />
+          <Route path="*" element={<Navigate to="/user/" replace />} />
         </Routes>
       </section>
     </>

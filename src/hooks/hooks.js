@@ -1,23 +1,35 @@
-import { useState, useEffect, useCallback } from "react";
-import { fetchData } from "../api/api";
+import { useState, useEffect } from "react";
+import { fetchData as fetchApiData } from "../api/api";
 import { handleError, handleNoData } from "../utils/errorHandler";
+import { userData } from "../mock/userData";
+import { activityData } from "../mock/activityData";
+import { averageSessionsData } from "../mock/averageSessionsData";
+import { performanceData } from "../mock/performanceData";
 
-// Hook de base pour gérer les appels API
-const useBaseHook = (userId, resource, errorMessage, dataTransformer = (data) => data) => {
+const USE_MOCK_DATA = import.meta.env.VITE_USE_MOCK_DATA === 'true';
+
+// Hook de base pour gérer les appels API ou les données mock
+const useBaseHook = (userId, resource, errorMessage, mockData, dataTransformer = (data) => data) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const memoizedDataTransformer = useCallback(dataTransformer, [dataTransformer]);
-
   useEffect(() => {
-    if (!userId) return;
+    const fetchData = async () => {
+      if (!userId) return;
 
-    const fetchApiData = async () => {
       try {
         setIsLoading(true);
-        const result = await fetchData(userId, resource, errorMessage);
-        const transformedData = memoizedDataTransformer(result);
+        let result;
+
+        if (USE_MOCK_DATA) {
+          result = mockData;
+        } else {
+          const apiResult = await fetchApiData(userId, resource, errorMessage);
+          result = apiResult.data;
+        }
+
+        const transformedData = dataTransformer(result);
         setData(transformedData);
         setError(null);
       } catch (error) {
@@ -28,47 +40,53 @@ const useBaseHook = (userId, resource, errorMessage, dataTransformer = (data) =>
       }
     };
 
-    fetchApiData();
-  }, [userId, resource, errorMessage, memoizedDataTransformer]);
+    fetchData();
+  }, [userId]); // Ne dépend que de userId
 
   return { data, isLoading, error };
 };
 
 // Hooks spécifiques pour chaque ressource
 export const useUserData = (userId) => 
-  useBaseHook(userId, 'user', 'Erreur lors de la récupération des données utilisateur :', (result) => result.data);
+  useBaseHook(userId, 'user', 'Erreur lors de la récupération des données utilisateur :', userData);
 
 export const useActivityData = (userId) => 
-  useBaseHook(userId, 'activity', 'Erreur lors de la récupération des données d\'activité :', (result) => result.data.sessions);
+  useBaseHook(userId, 'activity', 'Erreur lors de la récupération des données d\'activité :', activityData, 
+    (result) => result.sessions);
 
 export const useAverageSessionsData = (userId) => 
-  useBaseHook(userId, 'average-sessions', 'Erreur lors de la récupération des données de sessions moyennes :', (result) => result.data.sessions);
+  useBaseHook(userId, 'average-sessions', 'Erreur lors de la récupération des données de sessions moyennes :', averageSessionsData, 
+    (result) => result.sessions);
 
 export const usePerformanceData = (userId) => 
-  useBaseHook(userId, 'performance', 'Erreur lors de la récupération des données de performance :', (result) => {
-    if (result.data) {
-      return {
-        data: result.data.data || [],
-        kindMapping: result.data.kind || {}
-      };
-    }
-    return { data: [], kindMapping: {} };
-  });
+  useBaseHook(userId, 'performance', 'Erreur lors de la récupération des données de performance :', performanceData, 
+    (result) => ({
+      data: result.data || [],
+      kindMapping: result.kind || {}
+    }));
 
 export const useTodayScoreData = (userId) =>
-  useBaseHook(userId, 'user', 'Erreur lors de la récupération du score du jour :', (result) => result.data.todayScore || result.data.score);
+  useBaseHook(userId, 'user', 'Erreur lors de la récupération du score du jour :', userData, 
+    (result) => result.todayScore || result.score);
 
 export const useKeyDataData = (userId) =>
-  useBaseHook(userId, 'user', 'Erreur lors de la récupération des données clés :', (result) => result.data.keyData);
+  useBaseHook(userId, 'user', 'Erreur lors de la récupération des données clés :', userData, 
+    (result) => result.keyData);
 
 export const useUser = (userId) => {
-  const { data, error } = useUserData(userId);
+  const { data, error, isLoading } = useUserData(userId);
 
-  if (error) {
-    handleError(error);
-  } else if (!data) {
-    handleNoData();
-  }
+  useEffect(() => {
+    if (error) {
+      handleError(error);
+    }
+  }, [error]);
 
-  return { data, error };
+  useEffect(() => {
+    if (!isLoading && !data) {
+      handleNoData();
+    }
+  }, [isLoading, data]);
+
+  return { data, error, isLoading };
 }; 
