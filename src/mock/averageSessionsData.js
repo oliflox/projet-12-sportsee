@@ -3,15 +3,15 @@ export const averageSessionsData = {
   sessions: [
     {
       day: 1,
-      sessionLength: 30
+      sessionLength: 50
     },
     {
       day: 2,
-      sessionLength: 23
+      sessionLength: 35
     },
     {
       day: 3,
-      sessionLength: 45
+      sessionLength: 20
     },
     {
       day: 4,
@@ -19,11 +19,11 @@ export const averageSessionsData = {
     },
     {
       day: 5,
-      sessionLength: 0
+      sessionLength: 10
     },
     {
       day: 6,
-      sessionLength: 0
+      sessionLength: 47
     },
     {
       day: 7,

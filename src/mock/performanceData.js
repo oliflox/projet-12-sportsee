@@ -10,11 +10,11 @@ export const performanceData = {
   },
   data: [
     {
-      value: 80,
+      value: 150,
       kind: 1
     },
     {
-      value: 120,
+      value: 60,
       kind: 2
     },
     {
@@ -22,11 +22,11 @@ export const performanceData = {
       kind: 3
     },
     {
-      value: 50,
+      value: 80,
       kind: 4
     },
     {
-      value: 200,
+      value: 40,
       kind: 5
     },
     {
