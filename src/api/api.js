@@ -1,34 +1,46 @@
-const BASE_URL = 'http://localhost:3000';
+import { userData } from '../mock/userData'
+import { activityData } from '../mock/activityData'
+import { averageSessionsData } from '../mock/averageSessionsData'
+import { performanceData } from '../mock/performanceData'
+import { ERROR_TYPES, getDataErrorMessage } from '../utils/errorHandler'
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000'
+const USE_MOCK_DATA = import.meta.env.VITE_USE_MOCK_DATA === 'true'
 
 export const getResourceUrl = (userId, resource) => {
-  return `${BASE_URL}/user/${userId}${resource === 'user' ? '' : `/${resource}`}`;
+  return `${API_URL}/user/${userId}${resource === 'user' ? '' : `/${resource}`}`;
 };
 
-export const fetchData = async (userId, resource, errorMessage) => {
+export const fetchData = async (userId, resource, mockData) => {
+  if (USE_MOCK_DATA) {
+    return mockData;
+  }
+
   const url = getResourceUrl(userId, resource);
   try {
     const response = await fetch(url);
     if (!response.ok) {
       if (response.status === 404) {
-        throw new Error('USER_NOT_FOUND');
+        throw new Error(ERROR_TYPES.USER_NOT_FOUND);
       }
       throw new Error(`API_ERROR: ${response.status} - ${response.statusText}`);
     }
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error(errorMessage, error);
+    console.error(getDataErrorMessage(resource), error);
     throw error;
   }
 };
 
+export const getUserData = (userId) => 
+  fetchData(userId, 'user', userData);
 
+export const getActivityData = (userId) => 
+  fetchData(userId, 'activity', activityData);
 
-export const fetchActivityData = (userId) => 
-  fetchData(userId, 'activity', 'Erreur lors de la récupération des données d\'activité :');
+export const getAverageSessionsData = (userId) => 
+  fetchData(userId, 'average-sessions', averageSessionsData);
 
-export const fetchAverageSessionsData = (userId) => 
-  fetchData(userId, 'average-sessions', 'Erreur lors de la récupération des données de sessions moyennes :');
-
-export const fetchPerformanceData = (userId) => 
-  fetchData(userId, 'performance', 'Erreur lors de la récupération des données de performance :'); 
+export const getPerformanceData = (userId) => 
+  fetchData(userId, 'performance', performanceData); 
