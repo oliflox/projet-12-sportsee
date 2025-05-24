@@ -9,7 +9,10 @@ export const fetchData = async (userId, resource, errorMessage) => {
   try {
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error(`Erreur ${response.status} : ${response.statusText}`);
+      if (response.status === 404) {
+        throw new Error('USER_NOT_FOUND');
+      }
+      throw new Error(`API_ERROR: ${response.status} - ${response.statusText}`);
     }
     const data = await response.json();
     return data;
@@ -19,9 +22,7 @@ export const fetchData = async (userId, resource, errorMessage) => {
   }
 };
 
-// Fonctions spécifiques pour chaque ressource
-export const fetchUserData = (userId) => 
-  fetchData(userId, 'user', 'Erreur lors de la récupération des données utilisateur :');
+
 
 export const fetchActivityData = (userId) => 
   fetchData(userId, 'activity', 'Erreur lors de la récupération des données d\'activité :');

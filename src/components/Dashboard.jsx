@@ -1,31 +1,32 @@
-import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useUser } from "../hooks/hooks";
 import useUserId from "../hooks/useUserId";
 import Graphics from "./dashboard/Graphic";
 import KeyData from "./nutrition/KeyData";
-import { useErrorStore, clearError } from "../utils/errorHandler";
 
 export default function Dashboard() {
   const userId = useUserId();
-  const { data: userData, isLoading } = useUser(userId);
-  const errorMessage = useErrorStore();
-
-  useEffect(() => {
-    if (isLoading) return;
-    if (userData) {
-      clearError();
-    }
-  }, [isLoading, userData]);
+  const navigate = useNavigate();
+  const { data: userData, error, isLoading } = useUser(userId);
 
   if (isLoading) {
     return <div className="loading">Chargement...</div>;
   }
 
+  if (error) {
+    navigate(`/error/${error}`);
+    return null;
+  }
+
+  if (!userData) {
+    navigate('/error/USER_NOT_FOUND');
+    return null;
+  }
+
   return (
     <section className="dashboard">
-      <div id="errorDiv" className={`errorDiv ${errorMessage ? '' : 'hide'}`}>{errorMessage}</div>
       <h2 className="dashboard-title">
-        Bonjour <span className="username">{userData?.userInfos.firstName}</span>
+        Bonjour <span className="username">{userData.userInfos.firstName}</span>
       </h2>
       <h3>Félicitation ! Vous avez explosé vos objectifs hier &#128079;</h3>
       <section className="dashboard-analytics">

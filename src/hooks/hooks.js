@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetchData as fetchApiData } from "../api/api";
-import { handleError, handleNoData } from "../utils/errorHandler";
+import { handleError } from "../utils/errorHandler";
 import { userData } from "../mock/userData";
 import { activityData } from "../mock/activityData";
 import { averageSessionsData } from "../mock/averageSessionsData";
@@ -74,19 +74,46 @@ export const useKeyDataData = (userId) =>
     (result) => result.keyData);
 
 export const useUser = (userId) => {
-  const { data, error, isLoading } = useUserData(userId);
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (error) {
-      handleError(error);
-    }
-  }, [error]);
+    const fetchData = async () => {
+      // Vérification si l'ID est un nombre valide
+      if (isNaN(userId) || !Number.isInteger(Number(userId))) {
+        setError(new Error('USER_NOT_FOUND'));
+        setIsLoading(false);
+        return;
+      }
 
-  useEffect(() => {
-    if (!isLoading && !data) {
-      handleNoData();
-    }
-  }, [isLoading, data]);
+      try {
+        setIsLoading(true);
+        let result;
 
-  return { data, error, isLoading };
+        if (USE_MOCK_DATA) {
+          result = userData;
+        } else {
+          const apiResult = await fetchApiData(userId, 'user', 'Erreur lors de la récupération des données utilisateur :');
+          result = apiResult.data;
+        }
+
+        setData(result);
+        setError(null);
+      } catch (error) {
+        console.error('Erreur lors de la récupération des données utilisateur :', error);
+        setError(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [userId]);
+
+  return { 
+    data, 
+    error: error ? handleError(error) : null, 
+    isLoading 
+  };
 }; 

@@ -36,4 +36,4 @@ export const getPerformanceData = async (userId) => {
   }
   const response = await fetch(`${API_URL}/user/${userId}/performance`)
   return response.json()
-} 
+}  
