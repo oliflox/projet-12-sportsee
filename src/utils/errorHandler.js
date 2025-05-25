@@ -3,7 +3,8 @@ export const ERROR_TYPES = {
   USER_NOT_FOUND: 'USER_NOT_FOUND',
   API_ERROR: 'API_ERROR',
   NETWORK_ERROR: 'NETWORK_ERROR',
-  UNKNOWN_ERROR: 'UNKNOWN_ERROR'
+  UNKNOWN_ERROR: 'UNKNOWN_ERROR',
+  NOT_FOUND: 'NOT_FOUND'
 };
 
 // Messages d'erreur
@@ -11,7 +12,8 @@ export const ERROR_MESSAGES = {
   [ERROR_TYPES.USER_NOT_FOUND]: 'Utilisateur non trouvé',
   [ERROR_TYPES.API_ERROR]: 'Erreur lors de la communication avec l\'API',
   [ERROR_TYPES.NETWORK_ERROR]: 'Erreur de connexion réseau',
-  [ERROR_TYPES.UNKNOWN_ERROR]: 'Une erreur inattendue s\'est produite'
+  [ERROR_TYPES.UNKNOWN_ERROR]: 'Une erreur inattendue s\'est produite',
+  [ERROR_TYPES.NOT_FOUND]: 'La page que vous recherchez n\'existe pas'
 };
 
 // Messages d'erreur spécifiques pour chaque type de données
@@ -22,11 +24,6 @@ export const DATA_ERROR_MESSAGES = {
   performance: 'Erreur lors de la récupération des données de performance'
 };
 
-/**
- * Gère les erreurs de l'API et retourne le type d'erreur approprié
- * @param {Error} error - L'erreur à gérer
- * @returns {string} Le type d'erreur
- */
 export const handleError = (error) => {
   if (error.message === ERROR_TYPES.USER_NOT_FOUND) {
     return ERROR_TYPES.USER_NOT_FOUND;
@@ -43,28 +40,14 @@ export const handleError = (error) => {
   return ERROR_TYPES.UNKNOWN_ERROR;
 };
 
-/**
- * Retourne le message d'erreur correspondant au type d'erreur
- * @param {string} errorType - Le type d'erreur
- * @returns {string} Le message d'erreur
- */
 export const getErrorMessage = (errorType) => {
   return ERROR_MESSAGES[errorType] || ERROR_MESSAGES[ERROR_TYPES.UNKNOWN_ERROR];
 };
 
-/**
- * Retourne le message d'erreur spécifique pour un type de données
- * @param {string} dataType - Le type de données
- * @returns {string} Le message d'erreur spécifique
- */
 export const getDataErrorMessage = (dataType) => {
   return DATA_ERROR_MESSAGES[dataType] || ERROR_MESSAGES[ERROR_TYPES.UNKNOWN_ERROR];
 };
 
-/**
- * Gère le cas où aucune donnée n'est disponible
- * @returns {string} Le type d'erreur USER_NOT_FOUND
- */
 export const handleNoData = () => {
   return ERROR_TYPES.USER_NOT_FOUND;
 }; 
