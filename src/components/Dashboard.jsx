@@ -4,7 +4,7 @@ import useUserId from "../hooks/useUserId";
 import Graphics from "./dashboard/Graphic";
 import KeyData from "./nutrition/KeyData";
 
-export default function Dashboard() {
+const Dashboard = () => {
   const userId = useUserId();
   const navigate = useNavigate();
   const { data: userData, error, isLoading } = useUser(userId);
@@ -35,4 +35,6 @@ export default function Dashboard() {
       </section>
     </section>
   );
-}
+};
+
+export default Dashboard;

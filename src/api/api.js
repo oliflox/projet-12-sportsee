@@ -7,11 +7,11 @@ import { ERROR_TYPES, getDataErrorMessage } from '../utils/errorHandler'
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000'
 const USE_MOCK_DATA = import.meta.env.VITE_USE_MOCK_DATA === 'true'
 
-export const getResourceUrl = (userId, resource) => {
+const getResourceUrl = (userId, resource) => {
   return `${API_URL}/user/${userId}${resource === 'user' ? '' : `/${resource}`}`;
 };
 
-export const fetchData = async (userId, resource, mockData) => {
+const fetchData = async (userId, resource, mockData) => {
   if (USE_MOCK_DATA) {
     return mockData;
   }
@@ -33,7 +33,7 @@ export const fetchData = async (userId, resource, mockData) => {
   }
 };
 
-export const getUserData = (userId) => 
+const getUserData = (userId) => 
   fetchData(userId, 'user', userData);
 
 export const getActivityData = (userId) => 
@@ -43,4 +43,6 @@ export const getAverageSessionsData = (userId) =>
   fetchData(userId, 'average-sessions', averageSessionsData);
 
 export const getPerformanceData = (userId) => 
-  fetchData(userId, 'performance', performanceData); 
+  fetchData(userId, 'performance', performanceData);
+
+export { getResourceUrl, fetchData, getUserData }; 

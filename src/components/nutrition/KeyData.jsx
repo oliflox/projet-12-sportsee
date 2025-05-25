@@ -1,15 +1,15 @@
-import { useKeyDataData } from "../../hooks/hooks";
-import useUserId from "../../hooks/useUserId";
-import NutritionCard from "./NutritionCard";
-import { getNutritionCardsData } from "../../data/nutritionCardsData";
+import { useKeyDataData } from '../../hooks/hooks';
+import useUserId from '../../hooks/useUserId';
+import NutritionCard from './NutritionCard';
+import { getNutritionCardsData } from '../../data/nutritionCardsData';
 
-export default function KeyData() {
+const KeyData = () => {
   const userId = useUserId();
   const keyData = useKeyDataData(userId).data;
   const nutritionCards = getNutritionCardsData(keyData);
 
   return (
-    <article className="dashboard-analytics__nutrition">
+    <article className='dashboard-analytics__nutrition'>
       {nutritionCards.map((card, index) => (
         <NutritionCard
           key={index}
@@ -23,4 +23,6 @@ export default function KeyData() {
       ))}
     </article>
   );
-}
+};
+
+export default KeyData;
