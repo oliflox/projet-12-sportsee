@@ -1,26 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 :root {
-
+    /* Couleurs */
     --white: #fff;
     --black: #020203;
     --primary: #E60000;
     --lightgray: #FBFBFB;
     --gray:#74798C;
     --darkgray: #1f1f1f;
+    
+    /* Couleurs de fond pour les cartes de nutrition */
+    --calories-bg: #ff00001A;
+    --protein-bg: #4AB8FF1A;
+    --carbs-bg: #f9ce231A;
+    --fat-bg: #fd51821A;
 
+    /* Bordures */
     --radius: 8px;
+    --border-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
+    /* Dimensions */
     --full: 100%;
+    --nav-height: 91px;
+    --vertical-nav-width: 117px;
 
-    --bold: 700;
-    --lightbold: 500;
-    --regular: 400;
-    --light: 300;
-
+    /* Typographie */
+    --font-family-primary: 'Roboto', sans-serif;
+    --font-family-secondary: 'Montserrat', sans-serif;
+    
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-md: 16px;
+    --font-size-lg: 20px;
     --nav-font-size: 24px;
     --title-font-size: 48px;
 
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
+
+    /* Espacement */
     --spacing-xxs: 0.25rem;
     --spacing-xs: 0.5rem;
     --spacing-sm: 0.75rem;
@@ -38,6 +58,11 @@
     --spacing-10xl: 7rem;
     --spacing-11xl: 8rem;
 
+    /* Layout */
     --spacing-body: 100px;
     --spacing-collapse: 200px;
+    
+    /* Z-index */
+    --z-index-header: 1000;
+    --z-index-nav: 999;
 }
