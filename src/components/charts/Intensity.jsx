@@ -1,5 +1,6 @@
 import { RadarChart, PolarGrid, PolarAngleAxis, Radar, ResponsiveContainer } from "recharts";
 import { usePerformanceData } from "../../hooks/hooks";
+import { formatPerformanceData } from "../../utils/uniformData";
 
 const Intensity = ({ userId }) => {
   const performanceData = usePerformanceData(userId).data;
@@ -8,14 +9,7 @@ const Intensity = ({ userId }) => {
     return <div>Loading...</div>;
   }
 
-  const formatData = (data, kindMapping) => {
-    return data.map((item) => ({
-      subject: kindMapping[item.kind],
-      value: item.value,
-    }));
-  };
-
-  const formattedData = formatData(performanceData.data, performanceData.kindMapping);
+  const formattedData = formatPerformanceData(performanceData.data, performanceData.kindMapping);
 
   return (
     <div className="intensity-container charts">

@@ -1,5 +1,8 @@
 export const IMG_PATH = "/src/assets/img/";
 
+/**
+ * Uniformisation des données utilisateur
+ */
 const uniformData = ({ data }) => ({
   userId: data.id || data.userId,
   score: data.todayScore || data.score,
@@ -8,13 +11,17 @@ const uniformData = ({ data }) => ({
 
 export { uniformData };
 
-// Formatage des jours de la semaine
+/**
+ * Formatage des jours de la semaine
+ */
 export const formatDays = (day) => {
   const days = ["L", "M", "M", "J", "V", "S", "D"];
   return days[day - 1];
 };
 
-// Formatage des données de session moyenne
+/**
+ * Formatage des données de session moyenne
+ */
 export const formatAverageSessions = (sessions) => {
   return sessions?.map((session) => ({
     name: formatDays(session.day),
@@ -22,7 +29,9 @@ export const formatAverageSessions = (sessions) => {
   })) || [];
 };
 
-// Formatage des données d'activité
+/**
+ * Formatage des données d'activité
+ */
 export const formatActivityData = (sessions) => {
   return sessions?.map((session) => ({
     day: session.day,
@@ -31,7 +40,9 @@ export const formatActivityData = (sessions) => {
   })) || [];
 };
 
-// Formatage des données de performance
+/**
+ * Formatage des données de performance (intensité)
+ */
 export const formatPerformanceData = (data, kindMapping) => {
   if (!data || !Array.isArray(data)) return [];
   return data.map(item => ({
@@ -40,7 +51,9 @@ export const formatPerformanceData = (data, kindMapping) => {
   }));
 };
 
-// Formatage des données de score
+/**
+ * Formatage des données de score
+ */
 export const formatScoreData = (score) => {
   return [
     {
