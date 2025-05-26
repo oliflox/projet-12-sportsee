@@ -1,24 +1,25 @@
-import { userData } from '../mock/userData'
-import { activityData } from '../mock/activityData'
-import { averageSessionsData } from '../mock/averageSessionsData'
-import { performanceData } from '../mock/performanceData'
 import { ERROR_TYPES, getDataErrorMessage } from '../utils/errorHandler'
+import { useMockData } from '../hooks/useMockData'
 
 const API_URL = import.meta.env.VITE_API_URL
-const USE_MOCK_DATA = import.meta.env.VITE_USE_MOCK_DATA === 'true'
 
 const getResourceUrl = (userId, resource) => {
   return `${API_URL}/user/${userId}${resource === 'user' ? '' : `/${resource}`}`;
 };
 
-const fetchData = async (userId, resource, mockData) => {
-  if (USE_MOCK_DATA) {
-    return mockData;
-  }
+const fetchData = async (userId, resource) => {
+  const { isMockEnabled, getMockData } = useMockData();
 
-  const url = getResourceUrl(userId, resource);
   try {
-    const response = await fetch(url);
+    if (isMockEnabled()) {
+      const mockData = getMockData(resource);
+      if (!mockData) {
+        throw new Error(getDataErrorMessage(resource));
+      }
+      return mockData;
+    }
+
+    const response = await fetch(getResourceUrl(userId, resource));
     if (!response.ok) {
       if (response.status === 404) {
         throw new Error(ERROR_TYPES.USER_NOT_FOUND);
@@ -33,16 +34,16 @@ const fetchData = async (userId, resource, mockData) => {
   }
 };
 
-const getUserData = (userId) => 
-  fetchData(userId, 'user', userData);
+export const getUserData = (userId) =>
+  fetchData(userId, 'user');
 
-export const getActivityData = (userId) => 
-  fetchData(userId, 'activity', activityData);
+export const getActivityData = (userId) =>
+  fetchData(userId, 'activity');
 
-export const getAverageSessionsData = (userId) => 
-  fetchData(userId, 'average-sessions', averageSessionsData);
+export const getAverageSessionsData = (userId) =>
+  fetchData(userId, 'average-sessions');
 
-export const getPerformanceData = (userId) => 
-  fetchData(userId, 'performance', performanceData);
+export const getPerformanceData = (userId) =>
+  fetchData(userId, 'performance');
 
-export { getResourceUrl, fetchData, getUserData }; 
+export { getResourceUrl, fetchData }; 
