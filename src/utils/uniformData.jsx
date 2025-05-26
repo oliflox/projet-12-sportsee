@@ -1,12 +1,10 @@
 export const IMG_PATH = "/src/assets/img/";
 
-const uniformData = ({ data }) => ({
+export const uniformData = ({ data }) => ({
   userId: data.id || data.userId,
   score: data.todayScore || data.score,
   ...data.keyData
 });
-
-export { uniformData };
 
 export const formatDays = (day) => {
   const days = ["L", "M", "M", "J", "V", "S", "D"];
@@ -85,9 +83,10 @@ const NUTRITION_CONFIG = [
 ];
 
 export const formatNutritionData = (keyData) => {
+  if (!keyData) return [];
   return NUTRITION_CONFIG.map(({ id, title, icon, className, unit, key }) => ({
     id,
-    value: keyData[key],
+    value: keyData[key] || 0,
     title,
     icon: `${IMG_PATH}${icon}`,
     iconAlt: `${title} logo`,

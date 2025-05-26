@@ -3,6 +3,7 @@ import { fetchData as fetchApiData } from "../api/api";
 import { handleError } from "../utils/errorHandler";
 import { userData } from "../mock/userData";
 import { useUserId, useBaseHook } from "./useBaseHooks";
+import { useParams } from 'react-router-dom';
 
 const USE_MOCK_DATA = import.meta.env.VITE_USE_MOCK_DATA === 'true';
 
@@ -12,6 +13,7 @@ export const useUserData = () => {
 };
 
 export const useUser = () => {
+  const { userId: rawUserId } = useParams();
   const userId = useUserId();
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -19,7 +21,7 @@ export const useUser = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (isNaN(userId) || !Number.isInteger(Number(userId))) {
+      if (isNaN(userId) || !Number.isInteger(Number(userId)) || rawUserId !== userId.toString()) {
         setError(new Error('USER_NOT_FOUND'));
         setIsLoading(false);
         return;
@@ -47,7 +49,7 @@ export const useUser = () => {
     };
 
     fetchData();
-  }, [userId]);
+  }, [userId, rawUserId]);
 
   return { 
     data, 
