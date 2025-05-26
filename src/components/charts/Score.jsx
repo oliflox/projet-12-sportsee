@@ -8,9 +8,9 @@ import { formatScoreData } from "../../utils/uniformData";
 import Loading from "../Loading";
 
 const Scorecharts = () => {
-  const score = useTodayScoreData().data;
+  const { data: score, isLoading } = useTodayScoreData();
 
-  if (!score) {
+  if (isLoading) {
     return <Loading />;
   }
 

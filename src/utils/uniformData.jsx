@@ -49,45 +49,49 @@ export const formatScoreData = (score) => {
   ];
 };
 
+const NUTRITION_CONFIG = [
+  {
+    id: 'calories',
+    title: "Calories",
+    icon: "energy.svg",
+    className: "dashboard-dayliCal",
+    unit: "kCal",
+    key: "calorieCount"
+  },
+  {
+    id: 'proteins',
+    title: "Proteins",
+    icon: "chicken.svg",
+    className: "dashboard-protein",
+    unit: "g",
+    key: "proteinCount"
+  },
+  {
+    id: 'carbs',
+    title: "Carbs",
+    icon: "apple.svg",
+    className: "dashboard-carbs",
+    unit: "g",
+    key: "carbohydrateCount"
+  },
+  {
+    id: 'fats',
+    title: "Fats",
+    icon: "cheeseburger.svg",
+    className: "dashboard-fat",
+    unit: "g",
+    key: "lipidCount"
+  }
+];
+
 export const formatNutritionData = (keyData) => {
-  if (!keyData) return [];
-  
-  return [
-    {
-      id: 'calories',
-      value: keyData.calorieCount,
-      title: "Calories",
-      icon: `${IMG_PATH}energy.svg`,
-      iconAlt: "Calories logo",
-      className: "dashboard-dayliCal",
-      unit: "kCal"
-    },
-    {
-      id: 'proteins',
-      value: keyData.proteinCount,
-      title: "Proteins",
-      icon: `${IMG_PATH}chicken.svg`,
-      iconAlt: "Protein logo",
-      className: "dashboard-protein",
-      unit: "g"
-    },
-    {
-      id: 'carbs',
-      value: keyData.carbohydrateCount,
-      title: "Carbs",
-      icon: `${IMG_PATH}apple.svg`,
-      iconAlt: "Carbs logo",
-      className: "dashboard-carbs",
-      unit: "g"
-    },
-    {
-      id: 'fats',
-      value: keyData.lipidCount,
-      title: "Fats",
-      icon: `${IMG_PATH}cheeseburger.svg`,
-      iconAlt: "Fat logo",
-      className: "dashboard-fat",
-      unit: "g"
-    }
-  ];
+  return NUTRITION_CONFIG.map(({ id, title, icon, className, unit, key }) => ({
+    id,
+    value: keyData[key],
+    title,
+    icon: `${IMG_PATH}${icon}`,
+    iconAlt: `${title} logo`,
+    className,
+    unit
+  }));
 };

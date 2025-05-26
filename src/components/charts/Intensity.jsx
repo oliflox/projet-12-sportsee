@@ -10,9 +10,9 @@ import { formatPerformanceData } from "../../utils/uniformData";
 import Loading from "../Loading";
 
 const Intensity = ({ userId }) => {
-  const performanceData = usePerformanceData(userId).data;
+  const { data: performanceData, isLoading } = usePerformanceData(userId);
 
-  if (!performanceData) {
+  if (isLoading) {
     return <Loading />;
   }
 
