@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useUser } from "../hooks/hooks";
+import { useUser } from "../hooks/useUserHooks";
 import Graphics from "./dashboard/Graphic";
 import KeyData from "./nutrition/KeyData";
 

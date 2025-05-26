@@ -1,5 +1,5 @@
 import { AreaChart, Area, XAxis, Tooltip, ResponsiveContainer } from "recharts";
-import { useAverageSessionsData } from "../../hooks/hooks";
+import { useAverageSessionsData } from "../../hooks/useChartHooks";
 import { formatAverageSessions } from "../../utils/uniformData";
 
 const CustomTooltip = ({ active, payload }) => {

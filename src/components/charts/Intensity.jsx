@@ -5,7 +5,7 @@ import {
   Radar,
   ResponsiveContainer,
 } from "recharts";
-import { usePerformanceData } from "../../hooks/hooks";
+import { usePerformanceData } from "../../hooks/useChartHooks";
 import { formatPerformanceData } from "../../utils/uniformData";
 
 const Intensity = ({ userId }) => {

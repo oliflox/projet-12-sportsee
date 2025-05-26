@@ -1,4 +1,4 @@
-import { useNutritionData } from '../../hooks/hooks';
+import { useNutritionData } from '../../hooks/useChartHooks';
 import NutritionCard from './NutritionCard';
 
 const KeyData = () => {

@@ -8,7 +8,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { useActivityData } from "../../hooks/hooks";
+import { useActivityData } from "../../hooks/useChartHooks";
 import { formatActivityData } from "../../utils/uniformData";
 
 const CustomTooltip = ({ active, payload }) => {

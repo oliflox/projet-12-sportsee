@@ -3,7 +3,7 @@ import {
   RadialBar,
   ResponsiveContainer,
 } from "recharts";
-import { useTodayScoreData } from "../../hooks/hooks";
+import { useTodayScoreData } from "../../hooks/useChartHooks";
 import { formatScoreData } from "../../utils/uniformData";
 
 const Scorecharts = () => {
