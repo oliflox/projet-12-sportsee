@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react";
 import { fetchData as fetchApiData } from "../api/api";
 import { useParams } from 'react-router-dom';
-
-const USE_MOCK_DATA = import.meta.env.VITE_USE_MOCK_DATA === 'true';
+import { useMockData } from './useMockData';
 
 export const useUserId = () => {
   const { userId } = useParams();
   return parseInt(userId, 10);
-}; 
+};
 
 // Hook de base pour gérer les appels API ou les données mock
 export const useBaseHook = (userId, resource, errorMessage, mockData, dataTransformer = (data) => data) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { isMockEnabled, getMockData } = useMockData();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,8 +23,8 @@ export const useBaseHook = (userId, resource, errorMessage, mockData, dataTransf
         setIsLoading(true);
         let result;
 
-        if (USE_MOCK_DATA) {
-          result = mockData;
+        if (isMockEnabled()) {
+          result = getMockData(resource) || mockData;
         } else {
           const apiResult = await fetchApiData(userId, resource, errorMessage);
           result = apiResult.data;
