@@ -66,3 +66,49 @@ export const formatScoreData = (score) => {
     },
   ];
 };
+
+/**
+ * Formatage des données nutritionnelles
+ */
+export const formatNutritionData = (keyData) => {
+  if (!keyData) return [];
+  
+  return [
+    {
+      id: 'calories',
+      value: keyData.calorieCount,
+      title: "Calories",
+      icon: `${IMG_PATH}energy.svg`,
+      iconAlt: "Calories logo",
+      className: "dashboard-dayliCal",
+      unit: "kCal"
+    },
+    {
+      id: 'proteins',
+      value: keyData.proteinCount,
+      title: "Proteins",
+      icon: `${IMG_PATH}chicken.svg`,
+      iconAlt: "Protein logo",
+      className: "dashboard-protein",
+      unit: "g"
+    },
+    {
+      id: 'carbs',
+      value: keyData.carbohydrateCount,
+      title: "Carbs",
+      icon: `${IMG_PATH}apple.svg`,
+      iconAlt: "Carbs logo",
+      className: "dashboard-carbs",
+      unit: "g"
+    },
+    {
+      id: 'fats',
+      value: keyData.lipidCount,
+      title: "Fats",
+      icon: `${IMG_PATH}cheeseburger.svg`,
+      iconAlt: "Fat logo",
+      className: "dashboard-fat",
+      unit: "g"
+    }
+  ];
+};

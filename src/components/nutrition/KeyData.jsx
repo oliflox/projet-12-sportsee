@@ -1,17 +1,18 @@
-import { useKeyDataData, useUserId } from '../../hooks/hooks';
+import { useNutritionData } from '../../hooks/hooks';
 import NutritionCard from './NutritionCard';
-import { getNutritionCardsData } from '../../data/nutritionCardsData';
 
 const KeyData = () => {
-  const userId = useUserId();
-  const keyData = useKeyDataData(userId).data;
-  const nutritionCards = getNutritionCardsData(keyData);
+  const { nutritionCards, isLoading } = useNutritionData();
+
+  if (isLoading) {
+    return <div className="loading">Chargement...</div>;
+  }
 
   return (
     <article className='dashboard-analytics__nutrition'>
-      {nutritionCards.map((card, index) => (
+      {nutritionCards.map((card) => (
         <NutritionCard
-          key={index}
+          key={card.id}
           value={card.value}
           title={card.title}
           icon={card.icon}

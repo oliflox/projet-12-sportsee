@@ -6,6 +6,7 @@ import { activityData } from "../mock/activityData";
 import { averageSessionsData } from "../mock/averageSessionsData";
 import { performanceData } from "../mock/performanceData";
 import { useParams } from 'react-router-dom';
+import { formatNutritionData } from "../utils/uniformData";
 
 const USE_MOCK_DATA = import.meta.env.VITE_USE_MOCK_DATA === 'true';
 
@@ -135,5 +136,16 @@ export const useUser = () => {
     data, 
     error: error ? handleError(error) : null, 
     isLoading 
+  };
+};
+
+export const useNutritionData = () => {
+  const { data: keyData } = useKeyDataData();
+  const nutritionCards = formatNutritionData(keyData);
+
+  return {
+    nutritionCards,
+    isLoading: !keyData,
+    error: null
   };
 };

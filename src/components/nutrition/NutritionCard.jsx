@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const NutritionCard = ({ 
   value, 
   title, 
@@ -19,6 +21,15 @@ const NutritionCard = ({
       </div>
     </div>
   );
+};
+
+NutritionCard.propTypes = {
+  value: PropTypes.number,
+  title: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+  iconAlt: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired,
+  unit: PropTypes.string
 };
 
 export default NutritionCard; 
