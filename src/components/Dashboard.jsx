@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from "../hooks/useUserHooks";
 import Graphics from "./dashboard/Graphic";
 import KeyData from "./nutrition/KeyData";
+import Loading from "./Loading";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ const Dashboard = () => {
   }, [error, isLoading, userData, navigate]);
 
   if (isLoading) {
-    return <div className="loading">Chargement...</div>;
+    return <Loading />;
   }
 
   if (error || (!isLoading && !userData)) {

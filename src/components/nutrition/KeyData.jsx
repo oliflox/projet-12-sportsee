@@ -1,11 +1,12 @@
 import { useNutritionData } from '../../hooks/useChartHooks';
 import NutritionCard from './NutritionCard';
+import Loading from '../Loading';
 
 const KeyData = () => {
   const { nutritionCards, isLoading } = useNutritionData();
 
   if (isLoading) {
-    return <div className="loading">Chargement...</div>;
+    return <Loading />;
   }
 
   return (

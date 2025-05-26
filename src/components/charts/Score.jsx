@@ -5,12 +5,13 @@ import {
 } from "recharts";
 import { useTodayScoreData } from "../../hooks/useChartHooks";
 import { formatScoreData } from "../../utils/uniformData";
+import Loading from "../Loading";
 
 const Scorecharts = () => {
   const score = useTodayScoreData().data;
 
   if (!score) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   const data = formatScoreData(score);

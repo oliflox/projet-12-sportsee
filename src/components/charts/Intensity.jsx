@@ -7,12 +7,13 @@ import {
 } from "recharts";
 import { usePerformanceData } from "../../hooks/useChartHooks";
 import { formatPerformanceData } from "../../utils/uniformData";
+import Loading from "../Loading";
 
 const Intensity = ({ userId }) => {
   const performanceData = usePerformanceData(userId).data;
 
   if (!performanceData) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   const formattedData = formatPerformanceData(
