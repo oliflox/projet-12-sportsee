@@ -4,7 +4,7 @@ import { averageSessionsData } from '../mock/averageSessionsData'
 import { performanceData } from '../mock/performanceData'
 import { ERROR_TYPES, getDataErrorMessage } from '../utils/errorHandler'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000'
+const API_URL = import.meta.env.VITE_API_URL
 const USE_MOCK_DATA = import.meta.env.VITE_USE_MOCK_DATA === 'true'
 
 const getResourceUrl = (userId, resource) => {

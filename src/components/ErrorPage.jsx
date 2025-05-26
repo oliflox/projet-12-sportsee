@@ -14,7 +14,7 @@ const ErrorPage = ({ errorType: propErrorType }) => {
     <div className="error-container">
       <h2>Oups !</h2>
       <p>{getErrorMessage()}</p>
-      <button onClick={() => navigate('/')}>Retour à l&apos;accueil</button>
+      <button onClick={() => navigate('/')}>Retour à l'accueil</button>
     </div>
   );
 };

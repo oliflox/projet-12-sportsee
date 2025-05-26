@@ -1,25 +1,26 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../hooks/hooks";
-import useUserId from "../hooks/useUserId";
 import Graphics from "./dashboard/Graphic";
 import KeyData from "./nutrition/KeyData";
 
 const Dashboard = () => {
-  const userId = useUserId();
   const navigate = useNavigate();
-  const { data: userData, error, isLoading } = useUser(userId);
+  const { data: userData, error, isLoading } = useUser();
+
+  useEffect(() => {
+    if (error) {
+      navigate(`/error/${error}`);
+    } else if (!isLoading && !userData) {
+      navigate('/error/USER_NOT_FOUND');
+    }
+  }, [error, isLoading, userData, navigate]);
 
   if (isLoading) {
     return <div className="loading">Chargement...</div>;
   }
 
-  if (error) {
-    navigate(`/error/${error}`);
-    return null;
-  }
-
-  if (!userData) {
-    navigate('/error/USER_NOT_FOUND');
+  if (error || (!isLoading && !userData)) {
     return null;
   }
 
@@ -30,8 +31,8 @@ const Dashboard = () => {
       </h2>
       <h3>Félicitation ! Vous avez explosé vos objectifs hier &#128079;</h3>
       <section className="dashboard-analytics">
-        <Graphics userId={userId} />
-        <KeyData userId={userId} />
+        <Graphics />
+        <KeyData />
       </section>
     </section>
   );

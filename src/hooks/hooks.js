@@ -5,8 +5,15 @@ import { userData } from "../mock/userData";
 import { activityData } from "../mock/activityData";
 import { averageSessionsData } from "../mock/averageSessionsData";
 import { performanceData } from "../mock/performanceData";
+import { useParams } from 'react-router-dom';
 
 const USE_MOCK_DATA = import.meta.env.VITE_USE_MOCK_DATA === 'true';
+
+
+export const useUserId = () => {
+  const { userId } = useParams();
+  return parseInt(userId, 10);
+}; 
 
 // Hook de base pour gérer les appels API ou les données mock
 const useBaseHook = (userId, resource, errorMessage, mockData, dataTransformer = (data) => data) => {
@@ -47,33 +54,46 @@ const useBaseHook = (userId, resource, errorMessage, mockData, dataTransformer =
 };
 
 // Hooks spécifiques pour chaque ressource
-export const useUserData = (userId) => 
-  useBaseHook(userId, 'user', 'Erreur lors de la récupération des données utilisateur :', userData);
+export const useUserData = () => {
+  const userId = useUserId();
+  return useBaseHook(userId, 'user', 'Erreur lors de la récupération des données utilisateur :', userData);
+};
 
-export const useActivityData = (userId) => 
-  useBaseHook(userId, 'activity', 'Erreur lors de la récupération des données d\'activité :', activityData, 
+export const useActivityData = () => {
+  const userId = useUserId();
+  return useBaseHook(userId, 'activity', 'Erreur lors de la récupération des données d\'activité :', activityData, 
     (result) => result.sessions);
+};
 
-export const useAverageSessionsData = (userId) => 
-  useBaseHook(userId, 'average-sessions', 'Erreur lors de la récupération des données de sessions moyennes :', averageSessionsData, 
+export const useAverageSessionsData = () => {
+  const userId = useUserId();
+  return useBaseHook(userId, 'average-sessions', 'Erreur lors de la récupération des données de sessions moyennes :', averageSessionsData, 
     (result) => result.sessions);
+};
 
-export const usePerformanceData = (userId) => 
-  useBaseHook(userId, 'performance', 'Erreur lors de la récupération des données de performance :', performanceData, 
+export const usePerformanceData = () => {
+  const userId = useUserId();
+  return useBaseHook(userId, 'performance', 'Erreur lors de la récupération des données de performance :', performanceData, 
     (result) => ({
       data: result.data || [],
       kindMapping: result.kind || {}
     }));
+};
 
-export const useTodayScoreData = (userId) =>
-  useBaseHook(userId, 'user', 'Erreur lors de la récupération du score du jour :', userData, 
+export const useTodayScoreData = () => {
+  const userId = useUserId();
+  return useBaseHook(userId, 'user', 'Erreur lors de la récupération du score du jour :', userData, 
     (result) => result.todayScore || result.score);
+};
 
-export const useKeyDataData = (userId) =>
-  useBaseHook(userId, 'user', 'Erreur lors de la récupération des données clés :', userData, 
+export const useKeyDataData = () => {
+  const userId = useUserId();
+  return useBaseHook(userId, 'user', 'Erreur lors de la récupération des données clés :', userData, 
     (result) => result.keyData);
+};
 
-export const useUser = (userId) => {
+export const useUser = () => {
+  const userId = useUserId();
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -116,4 +136,4 @@ export const useUser = (userId) => {
     error: error ? handleError(error) : null, 
     isLoading 
   };
-}; 
+};

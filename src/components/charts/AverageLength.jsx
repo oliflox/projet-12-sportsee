@@ -1,7 +1,6 @@
 import { AreaChart, Area, XAxis, Tooltip, ResponsiveContainer } from "recharts";
-import useUserId from "../../hooks/useUserId";
-import { formatAverageSessions } from "../../utils/uniformData";
 import { useAverageSessionsData } from "../../hooks/hooks";
+import { formatAverageSessions } from "../../utils/uniformData";
 
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
@@ -11,8 +10,7 @@ const CustomTooltip = ({ active, payload }) => {
 };
 
 const StyledAreaChart = () => {
-  const userId = useUserId();
-  const sessions = useAverageSessionsData(userId).data;
+  const sessions = useAverageSessionsData().data;
   const data = formatAverageSessions(sessions);
 
   return (

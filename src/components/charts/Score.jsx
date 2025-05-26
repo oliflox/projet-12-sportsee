@@ -3,13 +3,11 @@ import {
   RadialBar,
   ResponsiveContainer,
 } from "recharts";
-import useUserId from "../../hooks/useUserId";
-import { formatScoreData } from "../../utils/uniformData";
 import { useTodayScoreData } from "../../hooks/hooks";
+import { formatScoreData } from "../../utils/uniformData";
 
 const Scorecharts = () => {
-  const userId = useUserId();
-  const score = useTodayScoreData(userId).data;
+  const score = useTodayScoreData().data;
 
   if (!score) {
     return <div>Loading...</div>;

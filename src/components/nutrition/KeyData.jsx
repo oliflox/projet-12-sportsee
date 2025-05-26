@@ -1,5 +1,4 @@
-import { useKeyDataData } from '../../hooks/hooks';
-import useUserId from '../../hooks/useUserId';
+import { useKeyDataData, useUserId } from '../../hooks/hooks';
 import NutritionCard from './NutritionCard';
 import { getNutritionCardsData } from '../../data/nutritionCardsData';
 
