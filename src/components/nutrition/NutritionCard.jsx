@@ -6,7 +6,7 @@ const NutritionCard = ({
   icon, 
   iconAlt, 
   className,
-  unit = 'g' // Valeur par défaut en grammes
+  unit = 'g'
 }) => {
   return (
     <div className={`dashboard-card ${className}`}>

@@ -4,22 +4,23 @@ import { performanceData } from "../mock/performanceData";
 import { userData } from "../mock/userData";
 import { useUserId, useBaseHook } from "./useBaseHooks";
 import { formatNutritionData } from "../utils/uniformData";
+import { getDataErrorMessage } from "../utils/errorHandler";
 
 export const useActivityData = () => {
     const userId = useUserId();
-    return useBaseHook(userId, 'activity', 'Erreur lors de la récupération des données d\'activité :', activityData,
+    return useBaseHook(userId, 'activity', getDataErrorMessage('activity'), activityData,
         (result) => result.sessions);
 };
 
 export const useAverageSessionsData = () => {
     const userId = useUserId();
-    return useBaseHook(userId, 'average-sessions', 'Erreur lors de la récupération des données de sessions moyennes :', averageSessionsData,
+    return useBaseHook(userId, 'average-sessions', getDataErrorMessage('averageSessions'), averageSessionsData,
         (result) => result.sessions);
 };
 
 export const usePerformanceData = () => {
     const userId = useUserId();
-    return useBaseHook(userId, 'performance', 'Erreur lors de la récupération des données de performance :', performanceData,
+    return useBaseHook(userId, 'performance', getDataErrorMessage('performance'), performanceData,
         (result) => ({
             data: result.data || [],
             kindMapping: result.kind || {}
@@ -28,13 +29,13 @@ export const usePerformanceData = () => {
 
 export const useTodayScoreData = () => {
     const userId = useUserId();
-    return useBaseHook(userId, 'user', 'Erreur lors de la récupération du score du jour :', userData,
+    return useBaseHook(userId, 'user', getDataErrorMessage('user'), userData,
         (result) => result.todayScore || result.score);
 };
 
 export const useKeyDataData = () => {
     const userId = useUserId();
-    return useBaseHook(userId, 'user', 'Erreur lors de la récupération des données clés :', userData,
+    return useBaseHook(userId, 'user', getDataErrorMessage('user'), userData,
         (result) => result.keyData);
 };
 

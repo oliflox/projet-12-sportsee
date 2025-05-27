@@ -8,7 +8,6 @@ export const useUserId = () => {
   return parseInt(userId, 10);
 };
 
-// Hook de base pour gérer les appels API ou les données mock
 export const useBaseHook = (userId, resource, errorMessage, mockData, dataTransformer = (data) => data) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);

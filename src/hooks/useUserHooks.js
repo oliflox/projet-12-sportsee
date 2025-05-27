@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetchData as fetchApiData } from "../api/api";
-import { handleError } from "../utils/errorHandler";
+import { handleError, getDataErrorMessage } from "../utils/errorHandler";
 import { userData } from "../mock/userData";
 import { useUserId, useBaseHook } from "./useBaseHooks";
 import { useParams } from 'react-router-dom';
@@ -9,7 +9,7 @@ const USE_MOCK_DATA = import.meta.env.VITE_USE_MOCK_DATA === 'true';
 
 export const useUserData = () => {
   const userId = useUserId();
-  return useBaseHook(userId, 'user', 'Erreur lors de la récupération des données utilisateur :', userData);
+  return useBaseHook(userId, 'user', getDataErrorMessage('user'), userData);
 };
 
 export const useUser = () => {
@@ -34,14 +34,14 @@ export const useUser = () => {
         if (USE_MOCK_DATA) {
           result = userData;
         } else {
-          const apiResult = await fetchApiData(userId, 'user', 'Erreur lors de la récupération des données utilisateur :');
+          const apiResult = await fetchApiData(userId, 'user', getDataErrorMessage('user'));
           result = apiResult.data;
         }
 
         setData(result);
         setError(null);
       } catch (error) {
-        console.error('Erreur lors de la récupération des données utilisateur :', error);
+        console.error(getDataErrorMessage('user'), error);
         setError(error);
       } finally {
         setIsLoading(false);

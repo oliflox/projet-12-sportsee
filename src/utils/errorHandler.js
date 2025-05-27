@@ -12,7 +12,7 @@ export const ERROR_MESSAGES = {
   [ERROR_TYPES.NETWORK_ERROR]: 'Erreur de connexion réseau',
   [ERROR_TYPES.UNKNOWN_ERROR]: 'Une erreur inattendue s\'est produite',
   [ERROR_TYPES.NOT_FOUND]: 'La page que vous recherchez n\'existe pas',
-  // Messages spécifiques aux données
+
   user: 'Erreur lors de la récupération des données utilisateur',
   activity: 'Erreur lors de la récupération des données d\'activité',
   averageSessions: 'Erreur lors de la récupération des données de sessions moyennes',
