@@ -11,10 +11,17 @@ const fetchData = async (userId, resource) => {
   const { isMockEnabled, getMockData } = useMockData();
 
   try {
+    if (!userId || isNaN(userId)) {
+      throw new Error(ERROR_TYPES.USER_NOT_FOUND);
+    }
+
     if (isMockEnabled()) {
       const mockData = getMockData(resource);
       if (!mockData) {
-        throw new Error(getDataErrorMessage(resource));
+        throw new Error(ERROR_TYPES.NOT_FOUND);
+      }
+      if (mockData.userId !== userId) {
+        throw new Error(ERROR_TYPES.USER_NOT_FOUND);
       }
       return mockData;
     }
