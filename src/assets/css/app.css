@@ -170,6 +170,7 @@
 .charts {
     height: 270px;
     border-radius: var(--spacing-sm);
+    color: #a4161b98;
 }
 
 .charts-container {
